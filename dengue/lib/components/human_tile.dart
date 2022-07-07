@@ -1,4 +1,4 @@
-import 'package:dengue/src/routes/app_routes.dart';
+import 'package:dengue/src/data/option_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -21,7 +21,11 @@ class HumanTile extends StatelessWidget {
             IconButton(
               icon: const Icon(FeatherIcons.edit),
               onPressed: () {
-                Navigator.of(context).pushNamed(AppRoutes.humanEdit);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => optionList[1]['page'],
+                    ));
               },
               color: Colors.black,
             ),

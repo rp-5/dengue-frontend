@@ -6,9 +6,14 @@ class HumanRegister extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(body: getBody());
+  }
+
+  Widget getBody() {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro de Caso em Humano'),
+        backgroundColor: Colors.black,
         actions: <Widget>[
           IconButton(
             icon: const Icon(FeatherIcons.save),
