@@ -17,9 +17,7 @@ class HumanRegister extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: const Icon(FeatherIcons.save),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -37,7 +35,7 @@ class HumanRegister extends StatelessWidget {
             ],
           ),
         ),
-        ),
-      );
+      ),
+    );
   }
 }
