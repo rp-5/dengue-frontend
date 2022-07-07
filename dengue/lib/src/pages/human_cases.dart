@@ -1,6 +1,6 @@
 import 'package:dengue/components/human_tile.dart';
 import 'package:dengue/src/data/humandata.dart';
-import 'package:dengue/src/routes/app_routes.dart';
+import 'package:dengue/src/data/option_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -14,6 +14,10 @@ class HumanCases extends StatefulWidget {
 class HumanCasesState extends State<HumanCases> {
   @override
   Widget build(BuildContext context) {
+    return Scaffold(body: getBody());
+  }
+
+  Widget getBody() {
     const human = {...humandata};
     return Scaffold(
         appBar: AppBar(
@@ -26,7 +30,11 @@ class HumanCasesState extends State<HumanCases> {
           leading: IconButton(
             icon: const Icon(FeatherIcons.plus),
             onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.humanRegister);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => optionList[0]['page'],
+                  ));
             },
           ),
         ),
