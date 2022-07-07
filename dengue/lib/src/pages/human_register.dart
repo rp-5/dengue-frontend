@@ -1,22 +1,22 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class HumanRegister extends StatelessWidget {
+  const HumanRegister({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registro de Caso em Humano'),
+        title: const Text('Registro de Caso em Humano'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.save),
+            icon: const Icon(FeatherIcons.save),
             onPressed: () {},
           ),
         ],
       ),
-      body: Padding(padding: EdgeInsets.all(10)
-      ), 
+      body: const Padding(padding: EdgeInsets.all(10)),
     );
   }
 }

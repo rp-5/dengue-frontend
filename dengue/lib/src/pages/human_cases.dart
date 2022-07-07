@@ -14,30 +14,28 @@ class HumanCases extends StatefulWidget {
   HumanCasesState createState() => HumanCasesState();
 }
 
-
-
 class HumanCasesState extends State<HumanCases> {
-
   @override
   Widget build(BuildContext context) {
-    const human ={...humandata};
+    const human = {...humandata};
     return Scaffold(
-
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        title: const Text(
-          "Casos em Humanos",
-          style: TextStyle(color: Colors.white),
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          elevation: 0,
+          title: const Text(
+            "Casos em Humanos",
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: IconButton(
+            icon: const Icon(FeatherIcons.plus),
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.HUMANREGISTER);
+            },
+          ),
         ),
-        leading: IconButton (
-          icon: const Icon(
-            FeatherIcons.plus),
-             onPressed: () { Navigator.of(context).pushNamed(AppRoutes.HUMANREGISTER); },),
-        ),
-      body: ListView.builder(
-        itemCount: human.length,
-        itemBuilder:(context, index) => HumanTile(human.values.elementAt(index)))
-    );
+        body: ListView.builder(
+            itemCount: human.length,
+            itemBuilder: (context, index) =>
+                HumanTile(human.values.elementAt(index))));
   }
 }
