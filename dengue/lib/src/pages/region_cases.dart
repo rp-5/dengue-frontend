@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 
 class RegionCases extends StatefulWidget {
+  const RegionCases({Key? key}) : super(key: key);
+
   @override
-  _RegionCases createState() => _RegionCases();
+  RegionCasesState createState() => RegionCasesState();
 }
 
-class _RegionCases extends State<RegionCases> {
+class RegionCasesState extends State<RegionCases> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Text('Região'),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        title: const Text(
+          "Casos por Região",
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
     );

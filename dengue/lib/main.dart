@@ -1,5 +1,3 @@
-//@dart=2.9
-
 import 'package:dengue/core/theme/theme.dart';
 import 'package:dengue/src/pages/human_edit.dart';
 import 'package:dengue/src/pages/human_register.dart';
@@ -12,7 +10,7 @@ void main() async {
 
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RootApp(),
+      home: const RootApp(),
       routes: {AppRoutes.HUMANREGISTER: (_) => HumanRegister(),
       AppRoutes.HUMANEDIT: (_) => HumanEdit()},
       theme: theme()));
