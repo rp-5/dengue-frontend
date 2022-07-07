@@ -1,4 +1,4 @@
-import 'package:dengue/components/human_tile.dart';
+import 'package:dengue/src/components/human_tile.dart';
 import 'package:dengue/src/data/humandata.dart';
 import 'package:dengue/src/data/option_list.dart';
 import 'package:flutter/material.dart';

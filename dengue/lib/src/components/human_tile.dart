@@ -1,8 +1,7 @@
 import 'package:dengue/src/data/option_list.dart';
+import 'package:dengue/src/model/human.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-
-import '../src/model/human.dart';
 
 class HumanTile extends StatelessWidget {
   final Human human;
