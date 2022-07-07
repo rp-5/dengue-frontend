@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class OverTheYears extends StatefulWidget {
+  const OverTheYears({Key? key}) : super(key: key);
+
   @override
-  _OverTheYears createState() => _OverTheYears();
+  OverTheYearsState createState() => OverTheYearsState();
 }
 
-class _OverTheYears extends State<OverTheYears> {
+class OverTheYearsState extends State<OverTheYears> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Container(
-          child: Text('Ao Longo Dos Anos'),
-        ),
+        child: Text('Ao Longo Dos Anos'),
       ),
     );
   }

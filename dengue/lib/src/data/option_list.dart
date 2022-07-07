@@ -2,26 +2,26 @@ import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/pages/human_cases.dart';
 import 'package:dengue/src/pages/region_cases.dart';
 import 'package:dengue/src/pages/over_the_years.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 List optionList = [
   {
     'id': 1,
-    'icon': Feather.arrow_up,
+    'icon': FeatherIcons.arrowUp,
     'name': 'HumanCases',
     "color": AppColors.blue,
     "page": HumanCases()
   },
   {
     'id': 2,
-    'icon': Feather.arrow_down,
+    'icon': FeatherIcons.arrowDown,
     'name': 'RegionCases',
     "color": AppColors.red,
     "page": RegionCases()
   },
   {
     'id': 3,
-    'icon': Feather.repeat,
+    'icon': FeatherIcons.repeat,
     'name': 'OverTheYears',
     "color": AppColors.green,
     "page": OverTheYears()

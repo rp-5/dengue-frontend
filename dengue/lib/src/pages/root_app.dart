@@ -5,23 +5,28 @@ import 'package:dengue/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 
 class RootApp extends StatefulWidget {
+  const RootApp({Key? key}) : super(key: key);
+
   @override
-  _RootAppState createState() => _RootAppState();
+  RootAppState createState() => RootAppState();
 }
 
-class _RootAppState extends State<RootApp> {
+class RootAppState extends State<RootApp> {
   int activeCategory = 0;
 
   int pageIndex = 0;
-  List<Widget> pages = [HumanCases(), RegionCases(), OverTheYears()];
+  List<Widget> pages = [
+    const HumanCases(),
+    const RegionCases(),
+    const OverTheYears()
+  ];
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -46,7 +51,11 @@ class _RootAppState extends State<RootApp> {
   }
 
   Widget getFooter() {
-    List<IconData> iconItems = [Feather.users, Feather.globe, Feather.calendar];
+    List<IconData> iconItems = [
+      FeatherIcons.users,
+      FeatherIcons.globe,
+      FeatherIcons.calendar
+    ];
 
     return AnimatedBottomNavigationBar(
       activeColor: AppColors.primary,

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class HumanCases extends StatefulWidget {
+  const HumanCases({Key? key}) : super(key: key);
+
   @override
-  _HumanCases createState() => _HumanCases();
+  HumanCasesState createState() => HumanCasesState();
 }
 
-class _HumanCases extends State<HumanCases> {
+class HumanCasesState extends State<HumanCases> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Container(
-          child: Text('Humanos'),
-        ),
+        child: Text('Humanos'),
       ),
     );
   }
