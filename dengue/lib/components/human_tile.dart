@@ -27,8 +27,19 @@ class HumanTile extends StatelessWidget {
             ),
             IconButton(
               icon: const Icon(FeatherIcons.delete),
-              onPressed: () {},
               color: const Color.fromARGB(255, 194, 81, 73),
+              onPressed: () {
+                showDialog(context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Excluir Registro?'),
+                  content: const Text('Tem certeza?'),
+                  actions: <Widget>[
+                      TextButton(onPressed: (){}, child: const Text('Sim')),
+                      TextButton(onPressed: (){Navigator.of(context).pop();}, child: const Text('Não')),
+                  ],
+                ),
+                );
+              },
             ),
           ],
         ),

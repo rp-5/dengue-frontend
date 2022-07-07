@@ -12,11 +12,27 @@ class HumanRegister extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: const Icon(FeatherIcons.save),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
         ],
       ),
-      body: const Padding(padding: EdgeInsets.all(10)),
-    );
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Form(
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'Nome'),
+              ),
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+            ],
+          ),
+        ),
+        ),
+      );
   }
 }
