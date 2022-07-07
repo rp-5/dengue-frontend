@@ -10,9 +10,17 @@ class OverTheYears extends StatefulWidget {
 class OverTheYearsState extends State<OverTheYears> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Ao Longo Dos Anos'),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        title: const Text(
+          "Casos ao Longo dos Anos",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

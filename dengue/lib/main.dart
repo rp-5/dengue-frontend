@@ -6,5 +6,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(MaterialApp(
-      debugShowCheckedModeBanner: false, home: RootApp(), theme: theme()));
+      debugShowCheckedModeBanner: false,
+      home: const RootApp(),
+      theme: theme()));
 }

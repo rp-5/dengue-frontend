@@ -10,20 +10,20 @@ List optionList = [
     'icon': FeatherIcons.arrowUp,
     'name': 'HumanCases',
     "color": AppColors.blue,
-    "page": HumanCases()
+    "page": const HumanCases()
   },
   {
     'id': 2,
     'icon': FeatherIcons.arrowDown,
     'name': 'RegionCases',
     "color": AppColors.red,
-    "page": RegionCases()
+    "page": const RegionCases()
   },
   {
     'id': 3,
     'icon': FeatherIcons.repeat,
     'name': 'OverTheYears',
     "color": AppColors.green,
-    "page": OverTheYears()
+    "page": const OverTheYears()
   },
 ];

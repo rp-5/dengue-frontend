@@ -12,7 +12,7 @@ ThemeData theme() {
 
 InputDecorationTheme inputDecorationTheme() {
   return InputDecorationTheme(
-      labelStyle: TextStyle(color: AppColors.black),
+      labelStyle: const TextStyle(color: AppColors.black),
       isDense: true,
       contentPadding: const EdgeInsets.symmetric(
           vertical: (18 / 896.0) * 960, horizontal: (16 / 896.0) * 960),
@@ -24,16 +24,16 @@ InputDecorationTheme inputDecorationTheme() {
       ),
       focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: AppColors.red, width: 1.4)),
+          borderSide: const BorderSide(color: AppColors.red, width: 1.4)),
       errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.red, width: 1.4),
+          borderSide: const BorderSide(color: AppColors.red, width: 1.4),
           borderRadius: BorderRadius.circular(10)),
       hintStyle: TextStyle(color: AppColors.black.withOpacity(0.6)),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.black, width: 1.5),
+        borderSide: const BorderSide(color: AppColors.black, width: 1.5),
         borderRadius: BorderRadius.circular(12),
       ),
       errorStyle: const TextStyle(
@@ -42,7 +42,7 @@ InputDecorationTheme inputDecorationTheme() {
 }
 
 TextTheme textTheme() {
-  return TextTheme(
+  return const TextTheme(
     bodyText1: TextStyle(color: AppColors.black),
     bodyText2: TextStyle(color: AppColors.black),
   );

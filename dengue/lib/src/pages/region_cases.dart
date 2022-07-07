@@ -10,9 +10,17 @@ class RegionCases extends StatefulWidget {
 class RegionCasesState extends State<RegionCases> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Região'),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        title: const Text(
+          "Casos por Região",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }
