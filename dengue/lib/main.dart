@@ -11,7 +11,9 @@ void main() async {
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const RootApp(),
-      routes: {AppRoutes.HUMANREGISTER: (_) => HumanRegister(),
-      AppRoutes.HUMANEDIT: (_) => HumanEdit()},
+      routes: {
+        AppRoutes.humanRegister: (_) => const HumanRegister(),
+        AppRoutes.humanEdit: (_) => const HumanEdit()
+      },
       theme: theme()));
 }

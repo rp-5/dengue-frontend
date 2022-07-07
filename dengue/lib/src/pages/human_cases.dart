@@ -1,11 +1,8 @@
 import 'package:dengue/components/human_tile.dart';
 import 'package:dengue/src/data/humandata.dart';
-import 'package:dengue/src/pages/human_register.dart';
 import 'package:dengue/src/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-
-import '../../core/theme/app_colors.dart';
 
 class HumanCases extends StatefulWidget {
   const HumanCases({Key? key}) : super(key: key);
@@ -29,7 +26,7 @@ class HumanCasesState extends State<HumanCases> {
           leading: IconButton(
             icon: const Icon(FeatherIcons.plus),
             onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.HUMANREGISTER);
+              Navigator.of(context).pushNamed(AppRoutes.humanRegister);
             },
           ),
         ),

@@ -1,5 +1,4 @@
-class AppRoutes{
-
-  static const HUMANREGISTER = '/human-register';
-  static const HUMANEDIT = '/human-edit';
+class AppRoutes {
+  static const humanRegister = '/human-register';
+  static const humanEdit = '/human-edit';
 }
