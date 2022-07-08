@@ -32,7 +32,7 @@ class HumanEditState extends State<HumanEdit>{
   Widget getBody() {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Caso em Humano'),
+        title: const Text('Edição do Registro de Caso em Humano'),
         backgroundColor: Colors.black,
         actions: <Widget>[
           IconButton(
