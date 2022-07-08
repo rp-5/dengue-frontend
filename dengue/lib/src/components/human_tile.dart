@@ -12,7 +12,7 @@ class HumanTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(human.name),
-      subtitle: Text(human.email),
+      subtitle: Text(human.status),
       trailing: SizedBox(
         width: 100,
         child: Row(

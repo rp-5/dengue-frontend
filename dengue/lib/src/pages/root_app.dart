@@ -53,7 +53,7 @@ class RootAppState extends State<RootApp> {
   Widget getFooter() {
     List<IconData> iconItems = [
       FeatherIcons.users,
-      FeatherIcons.globe,
+      FeatherIcons.map,
       FeatherIcons.calendar
     ];
 
