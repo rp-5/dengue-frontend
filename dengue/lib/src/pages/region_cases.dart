@@ -1,6 +1,6 @@
 import 'package:dengue/src/components/region_tile.dart';
-import 'package:dengue/src/data/option_list.dart';
-import 'package:dengue/src/data/regionData.dart';
+import 'package:dengue/src/data/pages_list.dart';
+import 'package:dengue/src/data/region_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -17,7 +17,7 @@ class RegionCasesState extends State<RegionCases> {
     return Scaffold(body: getBody());
   }
 
-Widget getBody() {
+  Widget getBody() {
     const region = {...regiondata};
     return Scaffold(
         appBar: AppBar(

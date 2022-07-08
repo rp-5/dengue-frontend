@@ -5,29 +5,29 @@ class HumanRegister extends StatefulWidget {
   @override
   HumanRegisterState createState() => HumanRegisterState();
   const HumanRegister({Key? key}) : super(key: key);
-
-  
 }
 
-class HumanRegisterState extends State<HumanRegister>{
+class HumanRegisterState extends State<HumanRegister> {
   List<String> sintomas = <String>['Tosse', 'Febre'];
   String dropdownSintoma = 'Tosse';
 
   List<String> gravidade = <String>['Baixa', 'Média', 'Alta'];
   String dropdownGravidade = 'Baixa';
 
-  List<String> status = <String>['Sem Suspeita', 'Suspeito', 'Confirmado', 'Descartado'];
+  List<String> status = <String>[
+    'Sem Suspeita',
+    'Suspeito',
+    'Confirmado',
+    'Descartado'
+  ];
   String dropdownStatus = 'Sem Suspeita';
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: getBody());
   }
 
-  
-
   Widget getBody() {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro de Caso em Humano'),
@@ -45,55 +45,60 @@ class HumanRegisterState extends State<HumanRegister>{
           child: Column(
             children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Nome*'),
+                decoration: const InputDecoration(labelText: 'Nome'),
               ),
               const TextField(
-                decoration: InputDecoration(labelText: 'Idade*'),
-                keyboardType: TextInputType.number
-              ),
+                  decoration: InputDecoration(labelText: 'Idade'),
+                  keyboardType: TextInputType.number),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Endereço*'),
+                decoration: const InputDecoration(labelText: 'Endereço'),
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Complemento'),
               ),
-              DropdownButton(value: dropdownSintoma, items: sintomas.map<DropdownMenuItem<String>>(
-                (String value){
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
+              DropdownButton(
+                value: dropdownSintoma,
+                items: sintomas.map<DropdownMenuItem<String>>(
+                  (String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
                     );
-                },
-              ).toList(), 
-              onChanged: (String? newValue) {
+                  },
+                ).toList(),
+                onChanged: (String? newValue) {
                   setState(() {
                     dropdownSintoma = newValue!;
                   });
                 },
               ),
-              DropdownButton(value: dropdownGravidade, items: gravidade.map<DropdownMenuItem<String>>(
-                (String value){
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
+              DropdownButton(
+                value: dropdownGravidade,
+                items: gravidade.map<DropdownMenuItem<String>>(
+                  (String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
                     );
-                },
-              ).toList(), 
-              onChanged: (String? newValue) {
+                  },
+                ).toList(),
+                onChanged: (String? newValue) {
                   setState(() {
                     dropdownGravidade = newValue!;
                   });
                 },
               ),
-              DropdownButton(value: dropdownStatus, items: status.map<DropdownMenuItem<String>>(
-                (String value){
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
+              DropdownButton(
+                value: dropdownStatus,
+                items: status.map<DropdownMenuItem<String>>(
+                  (String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
                     );
-                },
-              ).toList(), 
-              onChanged: (String? newValue) {
+                  },
+                ).toList(),
+                onChanged: (String? newValue) {
                   setState(() {
                     dropdownStatus = newValue!;
                   });
@@ -105,7 +110,4 @@ class HumanRegisterState extends State<HumanRegister>{
       ),
     );
   }
-  
-
-  
 }
