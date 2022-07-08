@@ -21,23 +21,27 @@ class RegionCasesState extends State<RegionCases> {
     const region = {...regiondata};
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
-          elevation: 0,
-          title: const Text(
-            "Casos por Região",
-            style: TextStyle(color: Colors.white),
-          ),
-          leading: IconButton(
-            icon: const Icon(FeatherIcons.plus),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => optionList[2]['page'],
-                  ));
-            },
-          ),
-        ),
+            backgroundColor: Colors.black,
+            elevation: 0,
+            title: const Text(
+              "Casos por Região",
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(FeatherIcons.plus),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => optionList[2]['page'],
+                      ));
+                },
+              ),
+              const SizedBox(
+                width: 10,
+              )
+            ]),
         body: ListView.builder(
             itemCount: region.length,
             itemBuilder: (context, index) =>

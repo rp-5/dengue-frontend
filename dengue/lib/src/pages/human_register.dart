@@ -32,11 +32,14 @@ class HumanRegisterState extends State<HumanRegister> {
       appBar: AppBar(
         title: const Text('Registro de Caso em Humano'),
         backgroundColor: Colors.black,
-        actions: <Widget>[
+        actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),
             onPressed: () {},
           ),
+          const SizedBox(
+            width: 10,
+          )
         ],
       ),
       body: Padding(

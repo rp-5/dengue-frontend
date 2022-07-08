@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
-
 class RegionRegister extends StatefulWidget {
   @override
   RegionRegisterState createState() => RegionRegisterState();
   const RegionRegister({Key? key}) : super(key: key);
-
-  
 }
 
-class RegionRegisterState extends State<RegionRegister>{
-  
+class RegionRegisterState extends State<RegionRegister> {
   bool isSelectedAgua = false;
   bool isSelectedLarva = false;
 
@@ -21,16 +17,30 @@ class RegionRegisterState extends State<RegionRegister>{
   }
 
   Widget getBody() {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro de Infestação na Região'),
         backgroundColor: Colors.black,
-        actions: <Widget>[
+        actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),
             onPressed: () {},
           ),
+          const SizedBox(
+            width: 10,
+          )
         ],
       ),
       body: Padding(
@@ -47,28 +57,60 @@ class RegionRegisterState extends State<RegionRegister>{
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Cidade*'),
               ),
-              ChoiceChip(label: const Text('Água parada?'),
-               selected: isSelectedAgua,
-               selectedColor: Color.fromARGB(255, 55, 192, 59),
-               backgroundColor: Color.fromARGB(255, 179, 73, 65),
-               avatar: const Icon(FeatherIcons.checkCircle),
-               onSelected: (newBoolValue){
-                setState(() {
-                  isSelectedAgua = newBoolValue;
-                });
-               },
-               ),
-               ChoiceChip(label: const Text('Larvas do mosquito da dengue?'),
-               selected: isSelectedLarva,
-               selectedColor: Color.fromARGB(255, 55, 192, 59),
-               backgroundColor: Color.fromARGB(255, 179, 73, 65),
-               avatar: const Icon(FeatherIcons.checkCircle),
-               onSelected: (newBoolValue){
-                setState(() {
-                  isSelectedLarva = newBoolValue;
-                });
-               },
-               ),
+              Row(
+                children: [
+                  const Text('Água parada '),
+                  Checkbox(
+                    checkColor: Colors.white,
+                    fillColor: MaterialStateProperty.resolveWith(getColor),
+                    value: isSelectedAgua,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isSelectedAgua = value!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  const Text('Larva de Mosquito da Dengue '),
+                  Checkbox(
+                    checkColor: Colors.white,
+                    fillColor: MaterialStateProperty.resolveWith(getColor),
+                    value: isSelectedLarva,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isSelectedLarva = value!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              ChoiceChip(
+                label: const Text('Água parada?'),
+                selected: isSelectedAgua,
+                selectedColor: const Color.fromARGB(255, 55, 192, 59),
+                backgroundColor: const Color.fromARGB(255, 179, 73, 65),
+                avatar: const Icon(FeatherIcons.checkCircle),
+                onSelected: (newBoolValue) {
+                  setState(() {
+                    isSelectedAgua = newBoolValue;
+                  });
+                },
+              ),
+              ChoiceChip(
+                label: const Text('Larvas do mosquito da dengue?'),
+                selected: isSelectedLarva,
+                selectedColor: const Color.fromARGB(255, 55, 192, 59),
+                backgroundColor: const Color.fromARGB(255, 179, 73, 65),
+                avatar: const Icon(FeatherIcons.checkCircle),
+                onSelected: (newBoolValue) {
+                  setState(() {
+                    isSelectedLarva = newBoolValue;
+                  });
+                },
+              ),
             ],
           ),
         ),
@@ -76,4 +118,3 @@ class RegionRegisterState extends State<RegionRegister>{
     );
   }
 }
-
