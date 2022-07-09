@@ -17,6 +17,18 @@ class RegionEditState extends State<RegionEdit> {
   }
 
   Widget getBody() {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.black;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edição de Infestação na Região'),
@@ -45,29 +57,33 @@ class RegionEditState extends State<RegionEdit> {
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Cidade*'),
               ),
-              ChoiceChip(
-                label: const Text('Água parada?'),
-                selected: isSelectedAgua,
-                selectedColor: const Color.fromARGB(255, 55, 192, 59),
-                backgroundColor: const Color.fromARGB(255, 179, 73, 65),
-                avatar: const Icon(FeatherIcons.checkCircle),
-                onSelected: (newBoolValue) {
-                  setState(() {
-                    isSelectedAgua = newBoolValue;
-                  });
-                },
+              Row(
+                children: [
+                  const Text('Água parada '),
+                  Checkbox(
+                    fillColor: MaterialStateProperty.resolveWith(getColor),
+                    value: isSelectedAgua,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isSelectedAgua = value!;
+                      });
+                    },
+                  ),
+                ],
               ),
-              ChoiceChip(
-                label: const Text('Larvas do mosquito da dengue?'),
-                selected: isSelectedLarva,
-                selectedColor: const Color.fromARGB(255, 55, 192, 59),
-                backgroundColor: const Color.fromARGB(255, 179, 73, 65),
-                avatar: const Icon(FeatherIcons.checkCircle),
-                onSelected: (newBoolValue) {
-                  setState(() {
-                    isSelectedLarva = newBoolValue;
-                  });
-                },
+              Row(
+                children: [
+                  const Text('Larva de Mosquito da Dengue '),
+                  Checkbox(
+                    fillColor: MaterialStateProperty.resolveWith(getColor),
+                    value: isSelectedLarva,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isSelectedLarva = value!;
+                      });
+                    },
+                  ),
+                ],
               ),
             ],
           ),

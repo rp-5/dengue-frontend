@@ -26,7 +26,7 @@ class RegionRegisterState extends State<RegionRegister> {
       if (states.any(interactiveStates.contains)) {
         return Colors.blue;
       }
-      return Colors.red;
+      return Colors.black;
     }
 
     return Scaffold(
@@ -86,30 +86,6 @@ class RegionRegisterState extends State<RegionRegister> {
                     },
                   ),
                 ],
-              ),
-              ChoiceChip(
-                label: const Text('Água parada?'),
-                selected: isSelectedAgua,
-                selectedColor: const Color.fromARGB(255, 55, 192, 59),
-                backgroundColor: const Color.fromARGB(255, 179, 73, 65),
-                avatar: const Icon(FeatherIcons.checkCircle),
-                onSelected: (newBoolValue) {
-                  setState(() {
-                    isSelectedAgua = newBoolValue;
-                  });
-                },
-              ),
-              ChoiceChip(
-                label: const Text('Larvas do mosquito da dengue?'),
-                selected: isSelectedLarva,
-                selectedColor: const Color.fromARGB(255, 55, 192, 59),
-                backgroundColor: const Color.fromARGB(255, 179, 73, 65),
-                avatar: const Icon(FeatherIcons.checkCircle),
-                onSelected: (newBoolValue) {
-                  setState(() {
-                    isSelectedLarva = newBoolValue;
-                  });
-                },
               ),
             ],
           ),
