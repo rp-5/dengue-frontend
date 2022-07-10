@@ -1,3 +1,4 @@
+import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -8,6 +9,9 @@ class HumanRegister extends StatefulWidget {
 }
 
 class HumanRegisterState extends State<HumanRegister> {
+  final HumanRegisterController _humanRegisterController =
+      HumanRegisterController();
+
   List<String> sintomas = <String>['Tosse', 'Febre'];
   String dropdownSintoma = 'Tosse';
 
@@ -21,6 +25,13 @@ class HumanRegisterState extends State<HumanRegister> {
     'Descartado'
   ];
   String dropdownStatus = 'Sem Suspeita';
+  @override
+  void initState() {
+     _humanRegisterController.setSymptom("Tosse");
+     _humanRegisterController.setGravity("Baixa");
+     _humanRegisterController.setStatus("Sem suspeita");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +46,9 @@ class HumanRegisterState extends State<HumanRegister> {
         actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),
-            onPressed: () {},
+            onPressed: () {
+              _humanRegisterController.createHumanCases(context);
+            },
           ),
           const SizedBox(
             width: 10,
@@ -48,16 +61,22 @@ class HumanRegisterState extends State<HumanRegister> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Nome'),
+                decoration: InputDecoration(labelText: 'Nome'),
+                onChanged: (value) => _humanRegisterController.setName(value),
               ),
-              const TextField(
+              TextField(
                   decoration: InputDecoration(labelText: 'Idade'),
+                  onChanged: (value) => _humanRegisterController.setAge(value),
                   keyboardType: TextInputType.number),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Endereço'),
+                onChanged: (value) =>
+                    _humanRegisterController.setAddress(value),
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Complemento'),
+                onChanged: (value) =>
+                    _humanRegisterController.setComplement(value),
               ),
               DropdownButton(
                 value: dropdownSintoma,
@@ -69,10 +88,11 @@ class HumanRegisterState extends State<HumanRegister> {
                     );
                   },
                 ).toList(),
-                onChanged: (String? newValue) {
+                onChanged: (String? value) {
                   setState(() {
-                    dropdownSintoma = newValue!;
+                    dropdownSintoma = value!;
                   });
+                  _humanRegisterController.setSymptom(value!);
                 },
               ),
               DropdownButton(
@@ -89,6 +109,7 @@ class HumanRegisterState extends State<HumanRegister> {
                   setState(() {
                     dropdownGravidade = newValue!;
                   });
+                  _humanRegisterController.setGravity(newValue!);
                 },
               ),
               DropdownButton(
@@ -105,6 +126,7 @@ class HumanRegisterState extends State<HumanRegister> {
                   setState(() {
                     dropdownStatus = newValue!;
                   });
+                  _humanRegisterController.setStatus(newValue!);
                 },
               ),
             ],

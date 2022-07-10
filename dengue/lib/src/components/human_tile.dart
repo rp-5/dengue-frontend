@@ -1,12 +1,17 @@
+import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/data/pages_list.dart';
 import 'package:dengue/src/model/human.dart';
+import 'package:dengue/src/pages/human_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class HumanTile extends StatelessWidget {
+  final HumanRegisterController _humanRegisterController =
+      HumanRegisterController();
+
   final Human human;
 
-  const HumanTile(this.human, {Key? key}) : super(key: key);
+  HumanTile(this.human, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,7 @@ class HumanTile extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => optionList[1]['page'],
+                      builder: (context) => HumanEdit(human: human),
                     ));
               },
               color: Colors.black,
@@ -38,7 +43,12 @@ class HumanTile extends StatelessWidget {
                     title: const Text('Excluir Registro?'),
                     content: const Text('Tem certeza?'),
                     actions: <Widget>[
-                      TextButton(onPressed: () {}, child: const Text('Sim')),
+                      TextButton(
+                          onPressed: () async {
+                            await _humanRegisterController.deleteHumanCase(
+                                human.id, context);
+                          },
+                          child: const Text('Sim')),
                       TextButton(
                           onPressed: () {
                             Navigator.pop(context);

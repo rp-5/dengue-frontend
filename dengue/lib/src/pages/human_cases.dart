@@ -1,6 +1,9 @@
 import 'package:dengue/src/components/human_tile.dart';
+import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/data/human_data.dart';
 import 'package:dengue/src/data/pages_list.dart';
+import 'package:dengue/src/model/human.dart';
+import 'package:dengue/src/pages/human_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -12,6 +15,15 @@ class HumanCases extends StatefulWidget {
 }
 
 class HumanCasesState extends State<HumanCases> {
+  final HumanRegisterController _humanRegisterController =
+      HumanRegisterController();
+  late Future<List<Human>> listHuman;
+  @override
+  void initState() {
+    super.initState();
+    listHuman = _humanRegisterController.fetchHumanList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: getBody());
@@ -42,9 +54,24 @@ class HumanCasesState extends State<HumanCases> {
                 width: 10,
               )
             ]),
-        body: ListView.builder(
-            itemCount: human.length,
-            itemBuilder: (context, index) =>
-                HumanTile(human.values.elementAt(index))));
+        body: FutureBuilder<List<Human>>(
+          future: listHuman,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Human>? data = snapshot.data;
+              return ListView.builder(
+                  itemCount: data?.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return HumanTile(data![index]);
+                  });
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+            // By default show a loading spinner.
+            return const CircularProgressIndicator();
+          },
+        ));
+
+    //  HumanTile(human.values.elementAt(index))));
   }
 }

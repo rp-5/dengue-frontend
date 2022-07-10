@@ -1,13 +1,20 @@
+import 'package:dengue/src/controllers/human_register_controller.dart';
+import 'package:dengue/src/model/human.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class HumanEdit extends StatefulWidget {
   @override
   HumanEditState createState() => HumanEditState();
-  const HumanEdit({Key? key}) : super(key: key);
+  const HumanEdit({Key? key, required this.human}) : super(key: key);
+
+  final Human human;
 }
 
 class HumanEditState extends State<HumanEdit> {
+  final HumanRegisterController _humanRegisterController =
+      HumanRegisterController();
+
   List<String> sintomas = <String>['Tosse', 'Febre'];
   String dropdownSintoma = 'Tosse';
 
@@ -20,7 +27,19 @@ class HumanEditState extends State<HumanEdit> {
     'Confirmado',
     'Descartado'
   ];
+
   String dropdownStatus = 'Sem Suspeita';
+  @override
+  void initState() {
+    _humanRegisterController.setName(widget.human.name);
+    _humanRegisterController.setAge(widget.human.age.toString());
+    _humanRegisterController.setAddress(widget.human.address);
+    _humanRegisterController.setComplement(widget.human.complement ?? '');
+    _humanRegisterController.setSymptom(widget.human.symptom);
+    _humanRegisterController.setGravity(widget.human.gravity);
+    _humanRegisterController.setStatus(widget.human.status);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +54,10 @@ class HumanEditState extends State<HumanEdit> {
         actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),
-            onPressed: () {},
+            onPressed: () async {
+              await _humanRegisterController.editHumanCase(
+                  widget.human.id, context);
+            },
           ),
           const SizedBox(
             width: 10,
@@ -48,16 +70,26 @@ class HumanEditState extends State<HumanEdit> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Nome*'),
+                initialValue: widget.human.name,
+                decoration: InputDecoration(labelText: 'Nome'),
+                onChanged: (value) => _humanRegisterController.setName(value),
               ),
-              const TextField(
-                  decoration: InputDecoration(labelText: 'Idade*'),
+              TextFormField(
+                  initialValue: widget.human.age.toString(),
+                  decoration: InputDecoration(labelText: 'Idade'),
+                  onChanged: (value) => _humanRegisterController.setAge(value),
                   keyboardType: TextInputType.number),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Endereço*'),
+                initialValue: widget.human.address,
+                decoration: const InputDecoration(labelText: 'Endereço'),
+                onChanged: (value) =>
+                    _humanRegisterController.setAddress(value),
               ),
               TextFormField(
+                initialValue: widget.human.complement,
                 decoration: const InputDecoration(labelText: 'Complemento'),
+                onChanged: (value) =>
+                    _humanRegisterController.setComplement(value),
               ),
               DropdownButton(
                 value: dropdownSintoma,
@@ -69,9 +101,9 @@ class HumanEditState extends State<HumanEdit> {
                     );
                   },
                 ).toList(),
-                onChanged: (String? newValue) {
+                onChanged: (String? value) {
                   setState(() {
-                    dropdownSintoma = newValue!;
+                    _humanRegisterController.setSymptom(value!);
                   });
                 },
               ),
@@ -88,6 +120,7 @@ class HumanEditState extends State<HumanEdit> {
                 onChanged: (String? newValue) {
                   setState(() {
                     dropdownGravidade = newValue!;
+                    _humanRegisterController.setGravity(newValue);
                   });
                 },
               ),
@@ -104,6 +137,7 @@ class HumanEditState extends State<HumanEdit> {
                 onChanged: (String? newValue) {
                   setState(() {
                     dropdownStatus = newValue!;
+                    _humanRegisterController.setStatus(newValue);
                   });
                 },
               ),
