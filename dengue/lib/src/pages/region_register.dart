@@ -1,3 +1,4 @@
+import 'package:dengue/src/controllers/region_register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -8,8 +9,17 @@ class RegionRegister extends StatefulWidget {
 }
 
 class RegionRegisterState extends State<RegionRegister> {
-  bool isSelectedAgua = false;
-  bool isSelectedLarva = false;
+  final RegionRegisterController _regionRegisterController = 
+  RegionRegisterController();
+
+  List<String> santading_water = <String>['Sim', 'Não'];
+  String dropdownWater = 'Não';
+
+  List<String> mosquito_larva = <String>['Sim', 'Não'];
+  String dropdownMosquito = 'Não';
+
+  // String isSelectedAgua = 'false';
+  // String isSelectedLarva = 'false';
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +46,9 @@ class RegionRegisterState extends State<RegionRegister> {
         actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),
-            onPressed: () {},
+            onPressed: () {
+              _regionRegisterController.createRegionCases(context);
+            },
           ),
           const SizedBox(
             width: 10,
@@ -49,44 +61,85 @@ class RegionRegisterState extends State<RegionRegister> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Endereço*'),
+                decoration: InputDecoration(labelText: 'Endereço*'),
+                onChanged: (value) => _regionRegisterController.setAddress(value),
               ),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Bairro*'),
+                decoration: InputDecoration(labelText: 'Bairro*'),
+                onChanged: (value) => _regionRegisterController.setDistrict(value),
               ),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Cidade*'),
+                decoration: InputDecoration(labelText: 'Cidade*'),
+                onChanged: (value) => _regionRegisterController.setCity(value),
               ),
-              Row(
-                children: [
-                  const Text('Água parada '),
-                  Checkbox(
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: isSelectedAgua,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isSelectedAgua = value!;
-                      });
-                    },
-                  ),
-                ],
+              // Row(
+              //   children: [
+              //     const Text('Água parada '),
+              //     Checkbox(
+              //       checkColor: Colors.white,
+              //       fillColor: MaterialStateProperty.resolveWith(getColor),
+              //       value: isSelectedAgua,
+              //       onChanged: (String? value) {
+              //         setState(() {
+              //           isSelectedAgua = value!;
+              //         });
+              //         _regionRegisterController.setSantandingWater(value!);
+              //       },
+              //     ),
+              //   ],
+              // ),
+              // Row(
+              //   children: [
+              //     const Text('Larva de Mosquito da Dengue '),
+              //     Checkbox(
+              //       checkColor: Colors.white,
+              //       fillColor: MaterialStateProperty.resolveWith(getColor),
+              //       value: isSelectedLarva,
+              //       onChanged: (bool? value) {
+              //         setState(() {
+              //           isSelectedLarva = value!;
+              //         });
+              //         _regionRegisterController.setMosquitoLarva(value!);
+              //       },
+              //     ),
+              //   ],
+              // ),
+              Text('Água parada?'),
+              DropdownButton(
+                value: dropdownWater,
+                items: santading_water.map<DropdownMenuItem<String>>(
+                  (String value){
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  },
+                ).toList(),
+                onChanged: (String? value){
+                  setState(() {
+                    dropdownWater = value!;
+                  });
+                  _regionRegisterController.setSantandingWater(value!);
+                },
               ),
-              Row(
-                children: [
-                  const Text('Larva de Mosquito da Dengue '),
-                  Checkbox(
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateProperty.resolveWith(getColor),
-                    value: isSelectedLarva,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isSelectedLarva = value!;
-                      });
-                    },
-                  ),
-                ],
-              ),
+              Text('Mosquito da Dengue?'),
+              DropdownButton(
+                value: dropdownMosquito,
+                items: santading_water.map<DropdownMenuItem<String>>(
+                  (String value){
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  },
+                ).toList(),
+                onChanged: (String? value){
+                  setState(() {
+                    dropdownMosquito = value!;
+                  });
+                  _regionRegisterController.setMosquitoLarva(value!);
+                },
+              )
             ],
           ),
         ),

@@ -1,6 +1,8 @@
 import 'package:dengue/src/components/region_tile.dart';
+import 'package:dengue/src/controllers/region_register_controller.dart';
 import 'package:dengue/src/data/pages_list.dart';
 import 'package:dengue/src/data/region_data.dart';
+import 'package:dengue/src/model/region.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -12,13 +14,22 @@ class RegionCases extends StatefulWidget {
 }
 
 class RegionCasesState extends State<RegionCases> {
+  final RegionRegisterController _regionRegisterController =
+      RegionRegisterController();
+  late Future<List<Region>> listRegion;
+
+  @override
+  void initState() {
+    super.initState();
+    listRegion = _regionRegisterController.fetchRegionList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: getBody());
   }
 
   Widget getBody() {
-    const region = {...regiondata};
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.black,
@@ -34,7 +45,7 @@ class RegionCasesState extends State<RegionCases> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => optionList[2]['page'],
+                        builder: (context) => optionList[1]['page'],
                       ));
                 },
               ),
@@ -42,10 +53,23 @@ class RegionCasesState extends State<RegionCases> {
                 width: 10,
               )
             ]),
-        body: ListView.builder(
-            itemCount: region.length,
-            itemBuilder: (context, index) =>
-                RegionTile(region.values.elementAt(index))));
+        body: FutureBuilder<List<Region>>(
+          future: listRegion,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<Region>? data = snapshot.data;
+              return ListView.builder(
+                  itemCount: data?.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return RegionTile(data![index]);
+                  });
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+            // By default show a loading spinner.
+            return const CircularProgressIndicator();
+          },
+        ));
   }
 }
 //   Widget getBody(){
