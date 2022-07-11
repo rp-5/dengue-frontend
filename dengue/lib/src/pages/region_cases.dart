@@ -1,3 +1,4 @@
+import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/components/region_tile.dart';
 import 'package:dengue/src/controllers/region_register_controller.dart';
 import 'package:dengue/src/data/pages_list.dart';
@@ -32,7 +33,7 @@ class RegionCasesState extends State<RegionCases> {
   Widget getBody() {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.secondary,
             elevation: 0,
             title: const Text(
               "Casos por Região",
@@ -76,7 +77,7 @@ class RegionCasesState extends State<RegionCases> {
 //     return Scaffold(
 //       extendBodyBehindAppBar: true,
 //       appBar: AppBar(
-//         backgroundColor: Colors.black,
+//       backgroundColor: AppColors.secondary,
 //         elevation: 0,
 //         title: const Text(
 //           "Casos por Região",

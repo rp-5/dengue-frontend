@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 ThemeData theme() {
   return ThemeData(
     primaryColor: Colors.white,
-    fontFamily: 'Proxima',
+    fontFamily: 'Roboto',
     inputDecorationTheme: inputDecorationTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );

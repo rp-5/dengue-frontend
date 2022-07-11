@@ -1,3 +1,4 @@
+import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/model/human.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,7 @@ class HumanEditState extends State<HumanEdit> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edição do Registro de Caso em Humano'),
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.secondary,
         actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),

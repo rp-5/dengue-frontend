@@ -1,3 +1,4 @@
+import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/region_register_controller.dart';
 import 'package:dengue/src/model/region.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,8 @@ class RegionEdit extends StatefulWidget {
 }
 
 class RegionEditState extends State<RegionEdit> {
-
-  final RegionRegisterController _regionRegisterController = RegionRegisterController();
+  final RegionRegisterController _regionRegisterController =
+      RegionRegisterController();
 
   List<String> santading_water = <String>['Sim', 'Não'];
   String dropdownWater = 'Não';
@@ -33,7 +34,6 @@ class RegionEditState extends State<RegionEdit> {
     _regionRegisterController.setMosquitoLarva(widget.region.mosquito_larva);
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +56,13 @@ class RegionEditState extends State<RegionEdit> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edição de Infestação na Região'),
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.secondary,
         actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),
-            onPressed: () async{
-              await _regionRegisterController.editRegionCase(widget.region.id, context);
+            onPressed: () async {
+              await _regionRegisterController.editRegionCase(
+                  widget.region.id, context);
             },
           ),
           const SizedBox(
@@ -77,12 +78,14 @@ class RegionEditState extends State<RegionEdit> {
               TextFormField(
                 decoration: InputDecoration(labelText: 'Endereço*'),
                 initialValue: widget.region.address,
-                onChanged: (value) => _regionRegisterController.setAddress(value),
+                onChanged: (value) =>
+                    _regionRegisterController.setAddress(value),
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Bairro*'),
                 initialValue: widget.region.district,
-                onChanged: (value) => _regionRegisterController.setDistrict(value),
+                onChanged: (value) =>
+                    _regionRegisterController.setDistrict(value),
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Cidade*'),
@@ -93,14 +96,14 @@ class RegionEditState extends State<RegionEdit> {
               DropdownButton(
                 value: dropdownWater,
                 items: santading_water.map<DropdownMenuItem<String>>(
-                  (String value){
+                  (String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
                     );
                   },
                 ).toList(),
-                onChanged: (String? value){
+                onChanged: (String? value) {
                   setState(() {
                     dropdownWater = value!;
                   });
@@ -111,14 +114,14 @@ class RegionEditState extends State<RegionEdit> {
               DropdownButton(
                 value: dropdownMosquito,
                 items: santading_water.map<DropdownMenuItem<String>>(
-                  (String value){
+                  (String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
                     );
                   },
                 ).toList(),
-                onChanged: (String? value){
+                onChanged: (String? value) {
                   setState(() {
                     dropdownMosquito = value!;
                   });
@@ -135,7 +138,7 @@ class RegionEditState extends State<RegionEdit> {
               //         setState(() {
               //           _regionRegisterController.setSantandingWater(value!);
               //         });
-                      
+
               //       },
               //     ),
               //   ],

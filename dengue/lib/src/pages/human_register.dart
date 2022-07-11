@@ -1,3 +1,4 @@
+import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -27,9 +28,9 @@ class HumanRegisterState extends State<HumanRegister> {
   String dropdownStatus = 'Sem Suspeita';
   @override
   void initState() {
-     _humanRegisterController.setSymptom("Tosse");
-     _humanRegisterController.setGravity("Baixa");
-     _humanRegisterController.setStatus("Sem suspeita");
+    _humanRegisterController.setSymptom("Tosse");
+    _humanRegisterController.setGravity("Baixa");
+    _humanRegisterController.setStatus("Sem suspeita");
     super.initState();
   }
 
@@ -42,7 +43,7 @@ class HumanRegisterState extends State<HumanRegister> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro de Caso em Humano'),
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.secondary,
         actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),

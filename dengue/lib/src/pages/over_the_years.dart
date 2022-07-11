@@ -1,3 +1,4 @@
+import 'package:dengue/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class OverTheYears extends StatefulWidget {
@@ -13,7 +14,7 @@ class OverTheYearsState extends State<OverTheYears> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.secondary,
         elevation: 0,
         title: const Text(
           "Casos ao Longo dos Anos",

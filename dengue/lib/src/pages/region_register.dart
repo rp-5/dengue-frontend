@@ -1,3 +1,4 @@
+import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/region_register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -9,8 +10,8 @@ class RegionRegister extends StatefulWidget {
 }
 
 class RegionRegisterState extends State<RegionRegister> {
-  final RegionRegisterController _regionRegisterController = 
-  RegionRegisterController();
+  final RegionRegisterController _regionRegisterController =
+      RegionRegisterController();
 
   List<String> santading_water = <String>['Sim', 'Não'];
   String dropdownWater = 'Não';
@@ -42,7 +43,7 @@ class RegionRegisterState extends State<RegionRegister> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro de Infestação na Região'),
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.secondary,
         actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),
@@ -62,11 +63,13 @@ class RegionRegisterState extends State<RegionRegister> {
             children: <Widget>[
               TextFormField(
                 decoration: InputDecoration(labelText: 'Endereço*'),
-                onChanged: (value) => _regionRegisterController.setAddress(value),
+                onChanged: (value) =>
+                    _regionRegisterController.setAddress(value),
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Bairro*'),
-                onChanged: (value) => _regionRegisterController.setDistrict(value),
+                onChanged: (value) =>
+                    _regionRegisterController.setDistrict(value),
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Cidade*'),
@@ -108,14 +111,14 @@ class RegionRegisterState extends State<RegionRegister> {
               DropdownButton(
                 value: dropdownWater,
                 items: santading_water.map<DropdownMenuItem<String>>(
-                  (String value){
+                  (String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
                     );
                   },
                 ).toList(),
-                onChanged: (String? value){
+                onChanged: (String? value) {
                   setState(() {
                     dropdownWater = value!;
                   });
@@ -126,14 +129,14 @@ class RegionRegisterState extends State<RegionRegister> {
               DropdownButton(
                 value: dropdownMosquito,
                 items: santading_water.map<DropdownMenuItem<String>>(
-                  (String value){
+                  (String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
                     );
                   },
                 ).toList(),
-                onChanged: (String? value){
+                onChanged: (String? value) {
                   setState(() {
                     dropdownMosquito = value!;
                   });

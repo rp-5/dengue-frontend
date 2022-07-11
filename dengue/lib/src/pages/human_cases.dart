@@ -6,6 +6,7 @@ import 'package:dengue/src/model/human.dart';
 import 'package:dengue/src/pages/human_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:dengue/core/theme/app_colors.dart';
 
 class HumanCases extends StatefulWidget {
   const HumanCases({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class HumanCasesState extends State<HumanCases> {
     const human = {...humandata};
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: AppColors.secondary,
             elevation: 0,
             title: const Text(
               "Casos em Humanos",
