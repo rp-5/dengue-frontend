@@ -92,41 +92,55 @@ class RegionEditState extends State<RegionEdit> {
                 initialValue: widget.region.city,
                 onChanged: (value) => _regionRegisterController.setCity(value),
               ),
-              Text('Água parada?'),
-              DropdownButton(
-                value: dropdownWater,
-                items: santading_water.map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  },
-                ).toList(),
-                onChanged: (String? value) {
-                  setState(() {
-                    dropdownWater = value!;
-                  });
-                  _regionRegisterController.setSantandingWater(value!);
-                },
+              Row(
+                children: [
+                  const Text('Água parada?'),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  DropdownButton(
+                    value: dropdownWater,
+                    items: santading_water.map<DropdownMenuItem<String>>(
+                      (String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? value) {
+                      setState(() {
+                        dropdownWater = value!;
+                      });
+                      _regionRegisterController.setSantandingWater(value!);
+                    },
+                  ),
+                ],
               ),
-              Text('Mosquito da Dengue?'),
-              DropdownButton(
-                value: dropdownMosquito,
-                items: santading_water.map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  },
-                ).toList(),
-                onChanged: (String? value) {
-                  setState(() {
-                    dropdownMosquito = value!;
-                  });
-                  _regionRegisterController.setMosquitoLarva(value!);
-                },
+              Row(
+                children: [
+                  const Text('Mosquito da Dengue?'),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  DropdownButton(
+                    value: dropdownMosquito,
+                    items: santading_water.map<DropdownMenuItem<String>>(
+                      (String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? value) {
+                      setState(() {
+                        dropdownMosquito = value!;
+                      });
+                      _regionRegisterController.setMosquitoLarva(value!);
+                    },
+                  ),
+                ],
               ),
               // Row(
               //   children: [

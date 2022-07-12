@@ -79,56 +79,83 @@ class HumanRegisterState extends State<HumanRegister> {
                 onChanged: (value) =>
                     _humanRegisterController.setComplement(value),
               ),
-              DropdownButton(
-                value: dropdownSintoma,
-                items: sintomas.map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  },
-                ).toList(),
-                onChanged: (String? value) {
-                  setState(() {
-                    dropdownSintoma = value!;
-                  });
-                  _humanRegisterController.setSymptom(value!);
-                },
+              const SizedBox(
+                height: 20,
               ),
-              DropdownButton(
-                value: dropdownGravidade,
-                items: gravidade.map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  },
-                ).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownGravidade = newValue!;
-                  });
-                  _humanRegisterController.setGravity(newValue!);
-                },
+              Row(
+                children: [
+                  const Text('Sintomas:'),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  DropdownButton(
+                    value: dropdownSintoma,
+                    items: sintomas.map<DropdownMenuItem<String>>(
+                      (String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? value) {
+                      setState(() {
+                        dropdownSintoma = value!;
+                      });
+                      _humanRegisterController.setSymptom(value!);
+                    },
+                  ),
+                ],
               ),
-              DropdownButton(
-                value: dropdownStatus,
-                items: status.map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  },
-                ).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownStatus = newValue!;
-                  });
-                  _humanRegisterController.setStatus(newValue!);
-                },
+              Row(
+                children: [
+                  const Text('Gravidade:'),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  DropdownButton(
+                    value: dropdownGravidade,
+                    items: gravidade.map<DropdownMenuItem<String>>(
+                      (String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownGravidade = newValue!;
+                      });
+                      _humanRegisterController.setGravity(newValue!);
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  const Text('Status:'),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  DropdownButton(
+                    value: dropdownStatus,
+                    items: status.map<DropdownMenuItem<String>>(
+                      (String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownStatus = newValue!;
+                      });
+                      _humanRegisterController.setStatus(newValue!);
+                    },
+                  ),
+                ],
               ),
             ],
           ),
