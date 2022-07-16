@@ -16,11 +16,11 @@ class RegionEditState extends State<RegionEdit> {
   final RegionRegisterController _regionRegisterController =
       RegionRegisterController();
 
-  List<String> santading_water = <String>['Sim', 'Não'];
-  String dropdownWater = 'Não';
+  List<String> santading_water = <String>['Sim', 'Nao'];
+  String dropdownWater = 'Nao';
 
-  List<String> mosquito_larva = <String>['Sim', 'Não'];
-  String dropdownMosquito = 'Não';
+  List<String> mosquito_larva = <String>['Sim', 'Nao'];
+  String dropdownMosquito = 'Nao';
 
   bool isSelectedAgua = false;
   bool isSelectedLarva = false;
@@ -99,7 +99,7 @@ class RegionEditState extends State<RegionEdit> {
                     width: 10,
                   ),
                   DropdownButton(
-                    value: dropdownWater,
+                    value: _regionRegisterController.getSantandingWater(),
                     items: santading_water.map<DropdownMenuItem<String>>(
                       (String value) {
                         return DropdownMenuItem<String>(
@@ -124,8 +124,8 @@ class RegionEditState extends State<RegionEdit> {
                     width: 10,
                   ),
                   DropdownButton(
-                    value: dropdownMosquito,
-                    items: santading_water.map<DropdownMenuItem<String>>(
+                    value: _regionRegisterController.getMosquitoLarva(),
+                    items: mosquito_larva.map<DropdownMenuItem<String>>(
                       (String value) {
                         return DropdownMenuItem<String>(
                           value: value,

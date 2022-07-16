@@ -13,11 +13,11 @@ class RegionRegisterState extends State<RegionRegister> {
   final RegionRegisterController _regionRegisterController =
       RegionRegisterController();
 
-  List<String> santading_water = <String>['Sim', 'Não'];
-  String dropdownWater = 'Não';
+  List<String> santading_water = <String>['Sim', 'Nao'];
+  String dropdownWater = 'Nao';
 
-  List<String> mosquito_larva = <String>['Sim', 'Não'];
-  String dropdownMosquito = 'Não';
+  List<String> mosquito_larva = <String>['Sim', 'Nao'];
+  String dropdownMosquito = 'Nao';
 
   // String isSelectedAgua = 'false';
   // String isSelectedLarva = 'false';
