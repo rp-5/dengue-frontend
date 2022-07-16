@@ -28,11 +28,19 @@ class HumanRegisterState extends State<HumanRegister> {
   String dropdownStatus = 'Sem Suspeita';
   @override
   void initState() {
-    _humanRegisterController.setSymptom("Tosse");
     _humanRegisterController.setGravity("Baixa");
     _humanRegisterController.setStatus("Sem suspeita");
     super.initState();
   }
+
+  bool febre = false;
+  bool manchas = false;
+  bool dorCab = false;
+  bool nausea = false;
+  bool dorOlhos = false;
+  bool dorCorpo = false;
+  bool cansaco = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,22 +96,93 @@ class HumanRegisterState extends State<HumanRegister> {
                   const SizedBox(
                     width: 10,
                   ),
-                  DropdownButton(
-                    value: dropdownSintoma,
-                    items: sintomas.map<DropdownMenuItem<String>>(
-                      (String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      },
-                    ).toList(),
-                    onChanged: (String? value) {
-                      setState(() {
-                        dropdownSintoma = value!;
-                      });
-                      _humanRegisterController.setSymptom(value!);
-                    },
+                  Text("Febre Alta"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,  
+                      value: this.febre,  
+                      onChanged: (bool? value) {  
+                        setState(() {  
+                          this.febre = value!;
+                          _humanRegisterController.setFebre(febre);  
+                        });
+                      },  
+                  ),
+                  Text("Manchas Vermelhas"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,  
+                      value: this.manchas,  
+                      onChanged: (bool? value) {  
+                        setState(() { 
+                          this.manchas = value!; 
+                          _humanRegisterController.setManchas(manchas);
+                        });
+                      },  
+                  ),
+                  Text("Dor de cabeça"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,  
+                      value: this.dorCab,  
+                      onChanged: (bool? value) {  
+                        setState(() { 
+                          this.dorCab = value!;
+                          _humanRegisterController.setdorCabeca(dorCab);  
+                        });
+                      },  
+                  ),
+                   Text("Nausea"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,  
+                      value: this.nausea,  
+                      onChanged: (bool? value) {  
+                        setState(() {  
+                          this.nausea = value!;
+                          _humanRegisterController.setNausea(nausea);  
+                        });
+                      },  
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                   Text("Dor atrás dos olhos"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,  
+                      value: this.dorOlhos,  
+                      onChanged: (bool? value) {  
+                        setState(() {  
+                          this.dorOlhos = value!;
+                          _humanRegisterController.setDorOlhos(dorOlhos);  
+                        });
+                      },  
+                  ),
+                   Text("Dor no corpo"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,  
+                      value: this.dorCorpo,  
+                      onChanged: (bool? value) {  
+                        setState(() {
+                          this.dorCorpo = value!;  
+                          _humanRegisterController.setDorCorpo(dorCorpo);   
+                        });
+                      },  
+                  ),
+                   Text("Cansaço extremo"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,  
+                      value: this.cansaco,  
+                      onChanged: (bool? value) {  
+                        setState(() {
+                            this.cansaco = value!;
+                          _humanRegisterController.setCansaco(cansaco);   
+                        });
+                      },  
                   ),
                 ],
               ),

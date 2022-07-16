@@ -31,7 +31,7 @@ class HumanCasesState extends State<HumanCases> {
   }
 
   Widget getBody() {
-    const human = {...humandata};
+    // const human = {...humandata};
     return Scaffold(
         appBar: AppBar(
             backgroundColor: AppColors.secondary,
