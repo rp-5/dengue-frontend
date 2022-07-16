@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/model/human.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter/foundation.dart';
 
 class HumanEdit extends StatefulWidget {
   @override
@@ -19,7 +22,7 @@ class HumanEditState extends State<HumanEdit> {
   List<String> sintomas = <String>['Tosse', 'Febre'];
   String dropdownSintoma = 'Tosse';
 
-  List<String> gravidade = <String>['Baixa', 'Média', 'Alta'];
+  List<String> gravidade = <String>['Baixa', 'Media', 'Alta'];
   String dropdownGravidade = 'Baixa';
 
   List<String> status = <String>[
@@ -114,19 +117,20 @@ class HumanEditState extends State<HumanEdit> {
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
-                      value: this.febre,  
+                      value: _humanRegisterController.getFebre(),  
                       onChanged: (bool? value) {  
                         setState(() {  
                           this.febre = value!;
                           _humanRegisterController.setFebre(febre);  
                         });
                       },  
+                      
                   ),
                   Text("Manchas Vermelhas"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
-                      value: this.manchas,  
+                      value: _humanRegisterController.getManchas(),  
                       onChanged: (bool? value) {  
                         setState(() { 
                           this.manchas = value!; 
@@ -208,7 +212,7 @@ class HumanEditState extends State<HumanEdit> {
                     width: 10,
                   ),
                   DropdownButton(
-                    value: dropdownGravidade,
+                    value: _humanRegisterController.getGravity(),
                     items: gravidade.map<DropdownMenuItem<String>>(
                       (String value) {
                         return DropdownMenuItem<String>(
@@ -234,7 +238,7 @@ class HumanEditState extends State<HumanEdit> {
                     width: 10,
                   ),
                   DropdownButton(
-                    value: dropdownStatus,
+                    value: _humanRegisterController.getStatus(),
                     items: status.map<DropdownMenuItem<String>>(
                       (String value) {
                         return DropdownMenuItem<String>(

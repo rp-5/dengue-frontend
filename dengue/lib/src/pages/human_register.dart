@@ -16,7 +16,7 @@ class HumanRegisterState extends State<HumanRegister> {
   List<String> sintomas = <String>['Tosse', 'Febre'];
   String dropdownSintoma = 'Tosse';
 
-  List<String> gravidade = <String>['Baixa', 'Média', 'Alta'];
+  List<String> gravidade = <String>['Baixa', 'Media', 'Alta'];
   String dropdownGravidade = 'Baixa';
 
   List<String> status = <String>[
