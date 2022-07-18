@@ -108,6 +108,10 @@ class HumanRegisterState extends State<HumanRegister> {
                         });
                       },  
                   ),
+                ],
+              ),
+              Row(
+                children: [
                   Text("Manchas Vermelhas"),
                   Checkbox(
                     checkColor: Colors.black,
@@ -120,6 +124,10 @@ class HumanRegisterState extends State<HumanRegister> {
                         });
                       },  
                   ),
+                ],
+              ),
+              Row(
+                children: [
                   Text("Dor de cabeça"),
                   Checkbox(
                     checkColor: Colors.black,
@@ -132,7 +140,11 @@ class HumanRegisterState extends State<HumanRegister> {
                         });
                       },  
                   ),
-                   Text("Nausea"),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Nausea"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
@@ -160,7 +172,11 @@ class HumanRegisterState extends State<HumanRegister> {
                         });
                       },  
                   ),
-                   Text("Dor no corpo"),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Dor no corpo"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
@@ -172,7 +188,11 @@ class HumanRegisterState extends State<HumanRegister> {
                         });
                       },  
                   ),
-                   Text("Cansaço extremo"),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Cansaço extremo"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  

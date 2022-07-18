@@ -131,6 +131,10 @@ class HumanEditState extends State<HumanEdit> {
                         });
                       },  
                   ),
+                ],
+              ),
+              Row(
+                children: [
                   Text("Manchas Vermelhas"),
                   Checkbox(
                     checkColor: Colors.black,
@@ -143,7 +147,10 @@ class HumanEditState extends State<HumanEdit> {
                         });
                       },  
                   ),
-                  Text("Dor de cabeça"),
+                ],
+              ),
+              Row(children: [
+                Text("Dor de cabeça"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
@@ -155,7 +162,9 @@ class HumanEditState extends State<HumanEdit> {
                         });
                       },  
                   ),
-                   Text("Nausea"),
+              ],),
+              Row(children: [
+                Text("Nausea"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,
@@ -168,8 +177,7 @@ class HumanEditState extends State<HumanEdit> {
                         });
                       },  
                   ),
-                ],
-              ),
+              ],),
               Row(
                 children: [
                    Text("Dor atrás dos olhos"),
@@ -184,7 +192,10 @@ class HumanEditState extends State<HumanEdit> {
                         });
                       },  
                   ),
-                   Text("Dor no corpo"),
+                ],
+              ),
+              Row(children: [
+                Text("Dor no corpo"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
@@ -196,7 +207,9 @@ class HumanEditState extends State<HumanEdit> {
                         });
                       },  
                   ),
-                   Text("Cansaço extremo"),
+              ],),
+              Row(children: [
+                Text("Cansaço extremo"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
@@ -208,8 +221,7 @@ class HumanEditState extends State<HumanEdit> {
                         });
                       },  
                   ),
-                ],
-              ),
+              ],),
               Row(
                 children: [
                   const Text('Gravidade:'),
