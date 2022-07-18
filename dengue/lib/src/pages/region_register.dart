@@ -12,6 +12,8 @@ class RegionRegister extends StatefulWidget {
 class RegionRegisterState extends State<RegionRegister> {
   final RegionRegisterController _regionRegisterController =
       RegionRegisterController();
+  
+  final formKey = GlobalKey<FormState>();
 
   List<String> santading_water = <String>['Sim', 'Nao'];
   String dropdownWater = 'Nao';
@@ -56,7 +58,9 @@ void initState() {
           IconButton(
             icon: const Icon(FeatherIcons.save),
             onPressed: () {
+              if(formKey.currentState!.validate()){
               _regionRegisterController.createRegionCases(context);
+              }
             },
           ),
           const SizedBox(
@@ -67,21 +71,43 @@ void initState() {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
+          key:formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
                 decoration: InputDecoration(labelText: 'Endereço*'),
                 onChanged: (value) =>
                     _regionRegisterController.setAddress(value),
+                validator: (value){
+                  if(value!.isEmpty){
+                    return "O endereço não pode estar vazio.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Bairro*'),
                 onChanged: (value) =>
                     _regionRegisterController.setDistrict(value),
+                validator: (value){
+                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    return "Escreva bairro corretamente.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Cidade*'),
                 onChanged: (value) => _regionRegisterController.setCity(value),
+                validator: (value){
+                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    return "Escreva a cidade corretamente.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               // Row(
               //   children: [

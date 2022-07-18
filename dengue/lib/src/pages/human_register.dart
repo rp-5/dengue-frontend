@@ -12,6 +12,8 @@ class HumanRegister extends StatefulWidget {
 class HumanRegisterState extends State<HumanRegister> {
   final HumanRegisterController _humanRegisterController =
       HumanRegisterController();
+  
+  final formKey = GlobalKey<FormState>();
 
   List<String> sintomas = <String>['Tosse', 'Febre'];
   String dropdownSintoma = 'Tosse';
@@ -56,7 +58,10 @@ class HumanRegisterState extends State<HumanRegister> {
           IconButton(
             icon: const Icon(FeatherIcons.save),
             onPressed: () {
-              _humanRegisterController.createHumanCases(context);
+              if(formKey.currentState!.validate()){
+                _humanRegisterController.createHumanCases(context);
+              }
+
             },
           ),
           const SizedBox(
@@ -67,20 +72,42 @@ class HumanRegisterState extends State<HumanRegister> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
+          key: formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Nome'),
+                decoration: InputDecoration(labelText: 'Nome completo*'),
                 onChanged: (value) => _humanRegisterController.setName(value),
+                validator: (value){
+                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    return "Escreva o nome corretamente.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
-              TextField(
-                  decoration: InputDecoration(labelText: 'Idade'),
-                  onChanged: (value) => _humanRegisterController.setAge(value),
-                  keyboardType: TextInputType.number),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Endereço'),
+                  decoration: InputDecoration(labelText: 'Idade*'),
+                  onChanged: (value) => _humanRegisterController.setAge(value),
+                  validator: (value){
+                    if(value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)){
+                      return "Informe a idade correta.";
+                    }else{
+                      return null;
+                    }
+                  },
+                ),
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'Endereço*'),
                 onChanged: (value) =>
                     _humanRegisterController.setAddress(value),
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return "O Endereço não pode estar vazio.";
+                      }else{
+                        return null;
+                      }
+                    },
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Complemento'),
