@@ -55,7 +55,7 @@ class RegionEditState extends State<RegionEdit> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edição de Infestação na Região'),
+        title: const Text('Edição de Infestação por Município'),
         backgroundColor: AppColors.secondary,
         actions: [
           IconButton(

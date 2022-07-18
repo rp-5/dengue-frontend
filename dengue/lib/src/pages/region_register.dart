@@ -19,6 +19,14 @@ class RegionRegisterState extends State<RegionRegister> {
   List<String> mosquito_larva = <String>['Sim', 'Nao'];
   String dropdownMosquito = 'Nao';
 
+@override
+void initState() {
+    _regionRegisterController.setSantandingWater('Nao');
+    _regionRegisterController.setMosquitoLarva('Nao');
+    super.initState();
+  }
+  
+
   // String isSelectedAgua = 'false';
   // String isSelectedLarva = 'false';
 
@@ -42,7 +50,7 @@ class RegionRegisterState extends State<RegionRegister> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Infestação na Região'),
+        title: const Text('Registro de Infestação no Município'),
         backgroundColor: AppColors.secondary,
         actions: [
           IconButton(

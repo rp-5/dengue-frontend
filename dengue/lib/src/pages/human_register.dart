@@ -29,7 +29,7 @@ class HumanRegisterState extends State<HumanRegister> {
   @override
   void initState() {
     _humanRegisterController.setGravity("Baixa");
-    _humanRegisterController.setStatus("Sem suspeita");
+    _humanRegisterController.setStatus("Sem Suspeita");
     super.initState();
   }
 

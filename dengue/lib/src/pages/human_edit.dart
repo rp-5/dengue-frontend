@@ -19,8 +19,8 @@ class HumanEditState extends State<HumanEdit> {
   final HumanRegisterController _humanRegisterController =
       HumanRegisterController();
 
-  List<String> sintomas = <String>['Tosse', 'Febre'];
-  String dropdownSintoma = 'Tosse';
+  // List<String> sintomas = <String>['Tosse', 'Febre'];
+  // String dropdownSintoma = 'Tosse';
 
   List<String> gravidade = <String>['Baixa', 'Media', 'Alta'];
   String dropdownGravidade = 'Baixa';
@@ -43,6 +43,12 @@ class HumanEditState extends State<HumanEdit> {
     _humanRegisterController.setGravity(widget.human.gravity);
     _humanRegisterController.setStatus(widget.human.status);
     _humanRegisterController.setFebre(widget.human.febre);
+    _humanRegisterController.setManchas(widget.human.manchas);
+    _humanRegisterController.setdorCabeca(widget.human.dorCabeca);
+    _humanRegisterController.setNausea(widget.human.nausea);
+    _humanRegisterController.setDorOlhos(widget.human.dorOlhos);
+    _humanRegisterController.setDorCorpo(widget.human.dorCorpo);
+    _humanRegisterController.setCansaco(widget.human.cansaco);
     super.initState();
   }
 
@@ -124,7 +130,6 @@ class HumanEditState extends State<HumanEdit> {
                           _humanRegisterController.setFebre(febre);  
                         });
                       },  
-                      
                   ),
                   Text("Manchas Vermelhas"),
                   Checkbox(
@@ -142,7 +147,7 @@ class HumanEditState extends State<HumanEdit> {
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
-                      value: this.dorCab,  
+                      value: _humanRegisterController.getDorCabeca(),  
                       onChanged: (bool? value) {  
                         setState(() { 
                           this.dorCab = value!;
@@ -155,7 +160,7 @@ class HumanEditState extends State<HumanEdit> {
                     checkColor: Colors.black,
                     activeColor: Colors.green,
                       
-                      value: this.nausea,  
+                      value: _humanRegisterController.getNausea(),  
                       onChanged: (bool? value) {  
                         setState(() {  
                           this.nausea = value!;
@@ -171,7 +176,7 @@ class HumanEditState extends State<HumanEdit> {
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
-                      value: this.dorOlhos,  
+                      value: _humanRegisterController.getDorOlhos(),  
                       onChanged: (bool? value) {  
                         setState(() {  
                           this.dorOlhos = value!;
@@ -183,7 +188,7 @@ class HumanEditState extends State<HumanEdit> {
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
-                      value: this.dorCorpo,  
+                      value: _humanRegisterController.getDorCorpo(),  
                       onChanged: (bool? value) {  
                         setState(() {
                           this.dorCorpo = value!;  
@@ -195,7 +200,7 @@ class HumanEditState extends State<HumanEdit> {
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,  
-                      value: this.cansaco,  
+                      value: _humanRegisterController.getCansaco(),  
                       onChanged: (bool? value) {  
                         setState(() {
                             this.cansaco = value!;
