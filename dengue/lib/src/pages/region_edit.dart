@@ -15,12 +15,14 @@ class RegionEdit extends StatefulWidget {
 class RegionEditState extends State<RegionEdit> {
   final RegionRegisterController _regionRegisterController =
       RegionRegisterController();
+  
+  final formKey = GlobalKey<FormState>();
 
-  List<String> santading_water = <String>['Sim', 'Não'];
-  String dropdownWater = 'Não';
+  List<String> santading_water = <String>['Sim', 'Nao'];
+  String dropdownWater = 'Nao';
 
-  List<String> mosquito_larva = <String>['Sim', 'Não'];
-  String dropdownMosquito = 'Não';
+  List<String> mosquito_larva = <String>['Sim', 'Nao'];
+  String dropdownMosquito = 'Nao';
 
   bool isSelectedAgua = false;
   bool isSelectedLarva = false;
@@ -55,14 +57,16 @@ class RegionEditState extends State<RegionEdit> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edição de Infestação na Região'),
+        title: const Text('Edição de Infestação por Município'),
         backgroundColor: AppColors.secondary,
         actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),
             onPressed: () async {
+              if(formKey.currentState!.validate()){
               await _regionRegisterController.editRegionCase(
                   widget.region.id, context);
+              }
             },
           ),
           const SizedBox(
@@ -73,6 +77,7 @@ class RegionEditState extends State<RegionEdit> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
+          key: formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
@@ -80,17 +85,38 @@ class RegionEditState extends State<RegionEdit> {
                 initialValue: widget.region.address,
                 onChanged: (value) =>
                     _regionRegisterController.setAddress(value),
+                validator: (value){
+                  if(value!.isEmpty){
+                    return "O endereço não pode estar vazio.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Bairro*'),
                 initialValue: widget.region.district,
                 onChanged: (value) =>
                     _regionRegisterController.setDistrict(value),
+                validator: (value){
+                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    return "Escreva bairro corretamente.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Cidade*'),
                 initialValue: widget.region.city,
                 onChanged: (value) => _regionRegisterController.setCity(value),
+                validator: (value){
+                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    return "Escreva a cidade corretamente.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               Row(
                 children: [
@@ -99,7 +125,7 @@ class RegionEditState extends State<RegionEdit> {
                     width: 10,
                   ),
                   DropdownButton(
-                    value: dropdownWater,
+                    value: _regionRegisterController.getSantandingWater(),
                     items: santading_water.map<DropdownMenuItem<String>>(
                       (String value) {
                         return DropdownMenuItem<String>(
@@ -124,8 +150,8 @@ class RegionEditState extends State<RegionEdit> {
                     width: 10,
                   ),
                   DropdownButton(
-                    value: dropdownMosquito,
-                    items: santading_water.map<DropdownMenuItem<String>>(
+                    value: _regionRegisterController.getMosquitoLarva(),
+                    items: mosquito_larva.map<DropdownMenuItem<String>>(
                       (String value) {
                         return DropdownMenuItem<String>(
                           value: value,

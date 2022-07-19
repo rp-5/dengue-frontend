@@ -36,7 +36,7 @@ class RegionCasesState extends State<RegionCases> {
             backgroundColor: AppColors.secondary,
             elevation: 0,
             title: const Text(
-              "Casos por Região",
+              "Casos por Município",
               style: TextStyle(color: Colors.white),
             ),
             actions: [

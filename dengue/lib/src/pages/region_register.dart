@@ -12,12 +12,22 @@ class RegionRegister extends StatefulWidget {
 class RegionRegisterState extends State<RegionRegister> {
   final RegionRegisterController _regionRegisterController =
       RegionRegisterController();
+  
+  final formKey = GlobalKey<FormState>();
 
-  List<String> santading_water = <String>['Sim', 'Não'];
-  String dropdownWater = 'Não';
+  List<String> santading_water = <String>['Sim', 'Nao'];
+  String dropdownWater = 'Nao';
 
-  List<String> mosquito_larva = <String>['Sim', 'Não'];
-  String dropdownMosquito = 'Não';
+  List<String> mosquito_larva = <String>['Sim', 'Nao'];
+  String dropdownMosquito = 'Nao';
+
+@override
+void initState() {
+    _regionRegisterController.setSantandingWater('Nao');
+    _regionRegisterController.setMosquitoLarva('Nao');
+    super.initState();
+  }
+  
 
   // String isSelectedAgua = 'false';
   // String isSelectedLarva = 'false';
@@ -42,13 +52,15 @@ class RegionRegisterState extends State<RegionRegister> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Infestação na Região'),
+        title: const Text('Registro de Infestação no Município'),
         backgroundColor: AppColors.secondary,
         actions: [
           IconButton(
             icon: const Icon(FeatherIcons.save),
             onPressed: () {
+              if(formKey.currentState!.validate()){
               _regionRegisterController.createRegionCases(context);
+              }
             },
           ),
           const SizedBox(
@@ -59,21 +71,43 @@ class RegionRegisterState extends State<RegionRegister> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
+          key:formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
                 decoration: InputDecoration(labelText: 'Endereço*'),
                 onChanged: (value) =>
                     _regionRegisterController.setAddress(value),
+                validator: (value){
+                  if(value!.isEmpty){
+                    return "O endereço não pode estar vazio.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Bairro*'),
                 onChanged: (value) =>
                     _regionRegisterController.setDistrict(value),
+                validator: (value){
+                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    return "Escreva bairro corretamente.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Cidade*'),
                 onChanged: (value) => _regionRegisterController.setCity(value),
+                validator: (value){
+                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                    return "Escreva a cidade corretamente.";
+                  }else{
+                    return null;
+                  }
+                },
               ),
               // Row(
               //   children: [

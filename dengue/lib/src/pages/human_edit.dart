@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/model/human.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter/foundation.dart';
 
 class HumanEdit extends StatefulWidget {
   @override
@@ -16,10 +19,11 @@ class HumanEditState extends State<HumanEdit> {
   final HumanRegisterController _humanRegisterController =
       HumanRegisterController();
 
-  List<String> sintomas = <String>['Tosse', 'Febre'];
-  String dropdownSintoma = 'Tosse';
+  final formKey = GlobalKey<FormState>();
+  // List<String> sintomas = <String>['Tosse', 'Febre'];
+  // String dropdownSintoma = 'Tosse';
 
-  List<String> gravidade = <String>['Baixa', 'Média', 'Alta'];
+  List<String> gravidade = <String>['Baixa', 'Media', 'Alta'];
   String dropdownGravidade = 'Baixa';
 
   List<String> status = <String>[
@@ -40,6 +44,12 @@ class HumanEditState extends State<HumanEdit> {
     _humanRegisterController.setGravity(widget.human.gravity);
     _humanRegisterController.setStatus(widget.human.status);
     _humanRegisterController.setFebre(widget.human.febre);
+    _humanRegisterController.setManchas(widget.human.manchas);
+    _humanRegisterController.setdorCabeca(widget.human.dorCabeca);
+    _humanRegisterController.setNausea(widget.human.nausea);
+    _humanRegisterController.setDorOlhos(widget.human.dorOlhos);
+    _humanRegisterController.setDorCorpo(widget.human.dorCorpo);
+    _humanRegisterController.setCansaco(widget.human.cansaco);
     super.initState();
   }
 
@@ -65,8 +75,10 @@ class HumanEditState extends State<HumanEdit> {
           IconButton(
             icon: const Icon(FeatherIcons.save),
             onPressed: () async {
+              if(formKey.currentState!.validate()){
               await _humanRegisterController.editHumanCase(
                   widget.human.id, context);
+              }
             },
           ),
           const SizedBox(
@@ -77,23 +89,47 @@ class HumanEditState extends State<HumanEdit> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
+          key: formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
                 initialValue: widget.human.name,
-                decoration: InputDecoration(labelText: 'Nome'),
+                decoration: InputDecoration(labelText: 'Nome completo*'),
                 onChanged: (value) => _humanRegisterController.setName(value),
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                    return "Escreva o nome corretamente.";
+                  } else {
+                    return null;
+                  }
+                },
               ),
               TextFormField(
-                  initialValue: widget.human.age.toString(),
-                  decoration: InputDecoration(labelText: 'Idade'),
-                  onChanged: (value) => _humanRegisterController.setAge(value),
-                  keyboardType: TextInputType.number),
+                initialValue: widget.human.age.toString(),
+                decoration: InputDecoration(labelText: 'Idade*'),
+                onChanged: (value) => _humanRegisterController.setAge(value),
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                    return "Informe a idade correta.";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
               TextFormField(
                 initialValue: widget.human.address,
-                decoration: const InputDecoration(labelText: 'Endereço'),
+                decoration: const InputDecoration(labelText: 'Endereço*'),
                 onChanged: (value) =>
                     _humanRegisterController.setAddress(value),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "O Endereço não pode estar vazio.";
+                  } else {
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 initialValue: widget.human.complement,
@@ -113,91 +149,110 @@ class HumanEditState extends State<HumanEdit> {
                   Text("Febre Alta"),
                   Checkbox(
                     checkColor: Colors.black,
-                    activeColor: Colors.green,  
-                      value: this.febre,  
-                      onChanged: (bool? value) {  
-                        setState(() {  
-                          this.febre = value!;
-                          _humanRegisterController.setFebre(febre);  
-                        });
-                      },  
-                  ),
-                  Text("Manchas Vermelhas"),
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,  
-                      value: this.manchas,  
-                      onChanged: (bool? value) {  
-                        setState(() { 
-                          this.manchas = value!; 
-                          _humanRegisterController.setManchas(manchas);
-                        });
-                      },  
-                  ),
-                  Text("Dor de cabeça"),
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,  
-                      value: this.dorCab,  
-                      onChanged: (bool? value) {  
-                        setState(() { 
-                          this.dorCab = value!;
-                          _humanRegisterController.setdorCabeca(dorCab);  
-                        });
-                      },  
-                  ),
-                   Text("Nausea"),
-                  Checkbox(
-                    checkColor: Colors.black,
                     activeColor: Colors.green,
-                      
-                      value: this.nausea,  
-                      onChanged: (bool? value) {  
-                        setState(() {  
-                          this.nausea = value!;
-                          _humanRegisterController.setNausea(nausea);  
-                        });
-                      },  
+                    value: _humanRegisterController.getFebre(),
+                    onChanged: (bool? value) {
+                      setState(() {
+                        this.febre = value!;
+                        _humanRegisterController.setFebre(febre);
+                      });
+                    },
                   ),
                 ],
               ),
               Row(
                 children: [
-                   Text("Dor atrás dos olhos"),
+                  Text("Manchas Vermelhas"),
                   Checkbox(
                     checkColor: Colors.black,
-                    activeColor: Colors.green,  
-                      value: this.dorOlhos,  
-                      onChanged: (bool? value) {  
-                        setState(() {  
-                          this.dorOlhos = value!;
-                          _humanRegisterController.setDorOlhos(dorOlhos);  
-                        });
-                      },  
+                    activeColor: Colors.green,
+                    value: _humanRegisterController.getManchas(),
+                    onChanged: (bool? value) {
+                      setState(() {
+                        this.manchas = value!;
+                        _humanRegisterController.setManchas(manchas);
+                      });
+                    },
                   ),
-                   Text("Dor no corpo"),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Dor de cabeça"),
                   Checkbox(
                     checkColor: Colors.black,
-                    activeColor: Colors.green,  
-                      value: this.dorCorpo,  
-                      onChanged: (bool? value) {  
-                        setState(() {
-                          this.dorCorpo = value!;  
-                          _humanRegisterController.setDorCorpo(dorCorpo);   
-                        });
-                      },  
+                    activeColor: Colors.green,
+                    value: _humanRegisterController.getDorCabeca(),
+                    onChanged: (bool? value) {
+                      setState(() {
+                        this.dorCab = value!;
+                        _humanRegisterController.setdorCabeca(dorCab);
+                      });
+                    },
                   ),
-                   Text("Cansaço extremo"),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Nausea"),
                   Checkbox(
                     checkColor: Colors.black,
-                    activeColor: Colors.green,  
-                      value: this.cansaco,  
-                      onChanged: (bool? value) {  
-                        setState(() {
-                            this.cansaco = value!;
-                          _humanRegisterController.setCansaco(cansaco);   
-                        });
-                      },  
+                    activeColor: Colors.green,
+                    value: _humanRegisterController.getNausea(),
+                    onChanged: (bool? value) {
+                      setState(() {
+                        this.nausea = value!;
+                        _humanRegisterController.setNausea(nausea);
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Dor atrás dos olhos"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,
+                    value: _humanRegisterController.getDorOlhos(),
+                    onChanged: (bool? value) {
+                      setState(() {
+                        this.dorOlhos = value!;
+                        _humanRegisterController.setDorOlhos(dorOlhos);
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Dor no corpo"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,
+                    value: _humanRegisterController.getDorCorpo(),
+                    onChanged: (bool? value) {
+                      setState(() {
+                        this.dorCorpo = value!;
+                        _humanRegisterController.setDorCorpo(dorCorpo);
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text("Cansaço extremo"),
+                  Checkbox(
+                    checkColor: Colors.black,
+                    activeColor: Colors.green,
+                    value: _humanRegisterController.getCansaco(),
+                    onChanged: (bool? value) {
+                      setState(() {
+                        this.cansaco = value!;
+                        _humanRegisterController.setCansaco(cansaco);
+                      });
+                    },
                   ),
                 ],
               ),
@@ -208,11 +263,10 @@ class HumanEditState extends State<HumanEdit> {
                     width: 10,
                   ),
                   DropdownButton(
-                    value: dropdownGravidade,
+                    value: _humanRegisterController.getGravity(),
                     items: gravidade.map<DropdownMenuItem<String>>(
                       (String value) {
                         return DropdownMenuItem<String>(
-                          
                           value: value,
                           child: Text(value),
                         );
@@ -234,7 +288,7 @@ class HumanEditState extends State<HumanEdit> {
                     width: 10,
                   ),
                   DropdownButton(
-                    value: dropdownStatus,
+                    value: _humanRegisterController.getStatus(),
                     items: status.map<DropdownMenuItem<String>>(
                       (String value) {
                         return DropdownMenuItem<String>(

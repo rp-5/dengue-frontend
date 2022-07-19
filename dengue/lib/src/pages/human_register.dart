@@ -13,10 +13,12 @@ class HumanRegisterState extends State<HumanRegister> {
   final HumanRegisterController _humanRegisterController =
       HumanRegisterController();
 
+  final formKey = GlobalKey<FormState>();
+
   List<String> sintomas = <String>['Tosse', 'Febre'];
   String dropdownSintoma = 'Tosse';
 
-  List<String> gravidade = <String>['Baixa', 'Média', 'Alta'];
+  List<String> gravidade = <String>['Baixa', 'Media', 'Alta'];
   String dropdownGravidade = 'Baixa';
 
   List<String> status = <String>[
@@ -29,7 +31,7 @@ class HumanRegisterState extends State<HumanRegister> {
   @override
   void initState() {
     _humanRegisterController.setGravity("Baixa");
-    _humanRegisterController.setStatus("Sem suspeita");
+    _humanRegisterController.setStatus("Sem Suspeita");
     super.initState();
   }
 
@@ -55,7 +57,9 @@ class HumanRegisterState extends State<HumanRegister> {
           IconButton(
             icon: const Icon(FeatherIcons.save),
             onPressed: () {
-              _humanRegisterController.createHumanCases(context);
+              if (formKey.currentState!.validate()) {
+                _humanRegisterController.createHumanCases(context);
+              }
             },
           ),
           const SizedBox(
@@ -66,20 +70,43 @@ class HumanRegisterState extends State<HumanRegister> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
+          key: formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Nome'),
+                decoration: InputDecoration(labelText: 'Nome completo*'),
                 onChanged: (value) => _humanRegisterController.setName(value),
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                    return "Escreva o nome corretamente.";
+                  } else {
+                    return null;
+                  }
+                },
               ),
-              TextField(
-                  decoration: InputDecoration(labelText: 'Idade'),
-                  onChanged: (value) => _humanRegisterController.setAge(value),
-                  keyboardType: TextInputType.number),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Endereço'),
+                decoration: InputDecoration(labelText: 'Idade*'),
+                onChanged: (value) => _humanRegisterController.setAge(value),
+                validator: (value) {
+                  if (value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                    return "Informe a idade correta.";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'Endereço*'),
                 onChanged: (value) =>
                     _humanRegisterController.setAddress(value),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "O Endereço não pode estar vazio.";
+                  } else {
+                    return null;
+                  }
+                },
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Complemento'),
@@ -107,6 +134,10 @@ class HumanRegisterState extends State<HumanRegister> {
                       });
                     },
                   ),
+                ],
+              ),
+              Row(
+                children: [
                   Text("Manchas Vermelhas"),
                   Checkbox(
                     checkColor: Colors.black,
@@ -119,6 +150,10 @@ class HumanRegisterState extends State<HumanRegister> {
                       });
                     },
                   ),
+                ],
+              ),
+              Row(
+                children: [
                   Text("Dor de cabeça"),
                   Checkbox(
                     checkColor: Colors.black,
@@ -131,6 +166,10 @@ class HumanRegisterState extends State<HumanRegister> {
                       });
                     },
                   ),
+                ],
+              ),
+              Row(
+                children: [
                   Text("Nausea"),
                   Checkbox(
                     checkColor: Colors.black,
@@ -159,6 +198,10 @@ class HumanRegisterState extends State<HumanRegister> {
                       });
                     },
                   ),
+                ],
+              ),
+              Row(
+                children: [
                   Text("Dor no corpo"),
                   Checkbox(
                     checkColor: Colors.black,
@@ -171,6 +214,10 @@ class HumanRegisterState extends State<HumanRegister> {
                       });
                     },
                   ),
+                ],
+              ),
+              Row(
+                children: [
                   Text("Cansaço extremo"),
                   Checkbox(
                     checkColor: Colors.black,
