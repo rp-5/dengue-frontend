@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class Human{
+class Human {
   final int id;
   final String name;
   final int age;
@@ -16,50 +16,47 @@ class Human{
   final bool dorOlhos;
   final bool dorCorpo;
   final bool cansaco;
-  
 
-  const Human({
-    required this.id,
-    required this.name,
-    required this.age,
-    required this.address,
-    this.complement,
-    // required this.symptom,
-    required this.gravity,
-    required this.status,
-    required this.febre,
-    required this.manchas,
-    required this.dorCabeca,
-    required this.nausea,
-    required this.dorOlhos,
-    required this.dorCorpo,
-    required this.cansaco
-});
+  const Human(
+      {required this.id,
+      required this.name,
+      required this.age,
+      required this.address,
+      this.complement,
+      // required this.symptom,
+      required this.gravity,
+      required this.status,
+      required this.febre,
+      required this.manchas,
+      required this.dorCabeca,
+      required this.nausea,
+      required this.dorOlhos,
+      required this.dorCorpo,
+      required this.cansaco});
 
-factory Human.fromJson(Map<String, dynamic> json) {
+  factory Human.fromJson(Map<String, dynamic> json) {
     return Human(
-      id: json['id'],
-      name: json['name'],
-      age: json['age'],
-      address: json['adress'],
-      complement: json['complement'],
-      // symptom: json['symptom'],
-      gravity: json['gravity'],
-      status: json['status'],
-      febre: json['febre'],
-      manchas: json['manchas'],
-      dorCabeca: json['dorCabeca'],
-      nausea: json['nausea'],
-      dorOlhos: json['dorOlhos'],
-      dorCorpo: json['dorCorpo'],
-      cansaco: json['cansaco']
-
-    );
+        id: json['id'],
+        name: json['name'],
+        age: json['age'],
+        address: json['adress'],
+        complement: json['complement'],
+        // symptom: json['symptom'],
+        gravity: json['gravity'],
+        status: json['status'],
+        febre: json['febre'],
+        manchas: json['manchas'],
+        dorCabeca: json['dorCabeca'],
+        nausea: json['nausea'],
+        dorOlhos: json['dorOlhos'],
+        dorCorpo: json['dorCorpo'],
+        cansaco: json['cansaco']);
   }
 
-  static List<Human> fromArray(List<dynamic> list) => list.map((e) => Human.fromJson(e)).toList();
+  static List<Human> fromArray(List<dynamic> list) =>
+      list.map((e) => Human.fromJson(e)).toList();
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
       "id": id,
       "name": name,

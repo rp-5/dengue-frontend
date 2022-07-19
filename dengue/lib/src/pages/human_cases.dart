@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:dengue/src/components/human_tile.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/data/human_data.dart';
@@ -18,12 +20,13 @@ class HumanCases extends StatefulWidget {
 class HumanCasesState extends State<HumanCases> {
   final HumanRegisterController _humanRegisterController =
       HumanRegisterController();
-  late Future<List<Human>> listHuman;
   @override
   void initState() {
     super.initState();
     listHuman = _humanRegisterController.fetchHumanList();
   }
+
+  late Future<List<Human>> listHuman;
 
   @override
   Widget build(BuildContext context) {

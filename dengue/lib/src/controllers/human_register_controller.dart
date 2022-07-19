@@ -36,7 +36,6 @@ class HumanRegisterController {
   void setDorCorpo(bool dorCorpo) => _dorCorpo = dorCorpo;
   void setCansaco(bool cansaco) => _cansaco = cansaco;
 
-
   String getName() => _name;
   String getAge() => _age;
   String getAddress() => _address;
@@ -91,12 +90,7 @@ class HumanRegisterController {
         }),
       );
       if (response.statusCode == 200) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HumanCases(),
-          ),
-        );
+        Navigator.pop(context);
       }
       // else{
       //   const AlertDialog("Registro inválido");
@@ -135,12 +129,7 @@ class HumanRegisterController {
       print(response.body);
 
       if (response.statusCode == 200) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HumanCases(),
-          ),
-        );
+        Navigator.pop(context);
       }
       // else{
       //   const AlertDialog("Registro inválido");
@@ -156,12 +145,7 @@ class HumanRegisterController {
         Uri.parse('http://192.168.1.11:8080/delete/human/$humanIdToDelete'));
 
     if (response.statusCode == 200) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HumanCases(),
-        ),
-      );
+      Navigator.pop(context);
     } else {
       throw Exception('Failed to load Human');
     }
