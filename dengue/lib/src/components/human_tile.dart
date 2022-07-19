@@ -13,6 +13,12 @@ class HumanTile extends StatelessWidget {
 
   HumanTile(this.human, {Key? key}) : super(key: key);
 
+  late Future<List<Human>> listHuman;
+
+  // void refreshList(){
+
+  // }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -29,7 +35,9 @@ class HumanTile extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => HumanEdit(human: human),
-                    ));
+                    )).then((value) {
+                  listHuman = _humanRegisterController.fetchHumanList();
+                });
               },
               color: Colors.black,
             ),
