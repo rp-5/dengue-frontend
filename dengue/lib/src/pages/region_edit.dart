@@ -76,10 +76,12 @@ class RegionEditState extends State<RegionEdit> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
         child: Form(
           key: formKey,
           child: Column(
             children: <Widget>[
+              SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Endereço*'),
                 initialValue: widget.region.address,
@@ -93,6 +95,7 @@ class RegionEditState extends State<RegionEdit> {
                   }
                 },
               ),
+              SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Bairro*'),
                 initialValue: widget.region.district,
@@ -106,6 +109,7 @@ class RegionEditState extends State<RegionEdit> {
                   }
                 },
               ),
+              SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Cidade*'),
                 initialValue: widget.region.city,
@@ -199,6 +203,7 @@ class RegionEditState extends State<RegionEdit> {
               // ),
             ],
           ),
+        ),
         ),
       ),
     );

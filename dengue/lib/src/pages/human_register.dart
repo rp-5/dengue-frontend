@@ -69,10 +69,12 @@ class HumanRegisterState extends State<HumanRegister> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
         child: Form(
           key: formKey,
           child: Column(
             children: <Widget>[
+              SizedBox(height: 5,),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Nome completo*'),
                 onChanged: (value) => _humanRegisterController.setName(value),
@@ -85,8 +87,9 @@ class HumanRegisterState extends State<HumanRegister> {
                   }
                 },
               ),
+              SizedBox(height: 10,),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Idade*'),
+                decoration: InputDecoration(labelText: 'Idade*',),
                 onChanged: (value) => _humanRegisterController.setAge(value),
                 validator: (value) {
                   if (value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)) {
@@ -96,6 +99,7 @@ class HumanRegisterState extends State<HumanRegister> {
                   }
                 },
               ),
+              SizedBox(height: 10,),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Endereço*'),
                 onChanged: (value) =>
@@ -108,6 +112,7 @@ class HumanRegisterState extends State<HumanRegister> {
                   }
                 },
               ),
+              SizedBox(height: 10,),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Complemento'),
                 onChanged: (value) =>
@@ -284,6 +289,7 @@ class HumanRegisterState extends State<HumanRegister> {
               ),
             ],
           ),
+        ),
         ),
       ),
     );

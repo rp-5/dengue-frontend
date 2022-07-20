@@ -70,10 +70,12 @@ void initState() {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
         child: Form(
           key:formKey,
           child: Column(
             children: <Widget>[
+              SizedBox(height: 5,),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Endereço*'),
                 onChanged: (value) =>
@@ -86,6 +88,7 @@ void initState() {
                   }
                 },
               ),
+              SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Bairro*'),
                 onChanged: (value) =>
@@ -98,6 +101,7 @@ void initState() {
                   }
                 },
               ),
+              SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Cidade*'),
                 onChanged: (value) => _regionRegisterController.setCity(value),
@@ -109,38 +113,7 @@ void initState() {
                   }
                 },
               ),
-              // Row(
-              //   children: [
-              //     const Text('Água parada '),
-              //     Checkbox(
-              //       checkColor: Colors.white,
-              //       fillColor: MaterialStateProperty.resolveWith(getColor),
-              //       value: isSelectedAgua,
-              //       onChanged: (String? value) {
-              //         setState(() {
-              //           isSelectedAgua = value!;
-              //         });
-              //         _regionRegisterController.setSantandingWater(value!);
-              //       },
-              //     ),
-              //   ],
-              // ),
-              // Row(
-              //   children: [
-              //     const Text('Larva de Mosquito da Dengue '),
-              //     Checkbox(
-              //       checkColor: Colors.white,
-              //       fillColor: MaterialStateProperty.resolveWith(getColor),
-              //       value: isSelectedLarva,
-              //       onChanged: (bool? value) {
-              //         setState(() {
-              //           isSelectedLarva = value!;
-              //         });
-              //         _regionRegisterController.setMosquitoLarva(value!);
-              //       },
-              //     ),
-              //   ],
-              // ),
+              SizedBox(height: 10),
               Row(
                 children: [
                   const Text('Água parada?'),
@@ -193,6 +166,7 @@ void initState() {
               ),
             ],
           ),
+        ),
         ),
       ),
     );

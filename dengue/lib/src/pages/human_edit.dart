@@ -52,6 +52,7 @@ class HumanEditState extends State<HumanEdit> {
     _humanRegisterController.setCansaco(widget.human.cansaco);
     super.initState();
   }
+ 
 
   bool febre = false;
   bool manchas = false;
@@ -88,10 +89,12 @@ class HumanEditState extends State<HumanEdit> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
+        child:SingleChildScrollView(
         child: Form(
           key: formKey,
           child: Column(
             children: <Widget>[
+              SizedBox(height: 5),
               TextFormField(
                 initialValue: widget.human.name,
                 decoration: InputDecoration(labelText: 'Nome completo*'),
@@ -105,7 +108,8 @@ class HumanEditState extends State<HumanEdit> {
                   }
                 },
               ),
-              TextFormField(
+              SizedBox(height: 10),
+              TextFormField(   
                 initialValue: widget.human.age.toString(),
                 decoration: InputDecoration(labelText: 'Idade*'),
                 onChanged: (value) => _humanRegisterController.setAge(value),
@@ -118,6 +122,7 @@ class HumanEditState extends State<HumanEdit> {
                   }
                 },
               ),
+              SizedBox(height: 10,),
               TextFormField(
                 initialValue: widget.human.address,
                 decoration: const InputDecoration(labelText: 'Endereço*'),
@@ -131,6 +136,7 @@ class HumanEditState extends State<HumanEdit> {
                   }
                 },
               ),
+              SizedBox(height: 10,),
               TextFormField(
                 initialValue: widget.human.complement,
                 decoration: const InputDecoration(labelText: 'Complemento'),
@@ -308,6 +314,7 @@ class HumanEditState extends State<HumanEdit> {
               ),
             ],
           ),
+        ),
         ),
       ),
     );
