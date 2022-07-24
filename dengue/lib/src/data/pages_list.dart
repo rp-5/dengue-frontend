@@ -1,5 +1,6 @@
 import 'package:dengue/src/pages/human_edit.dart';
 import 'package:dengue/src/pages/human_register.dart';
+import 'package:dengue/src/pages/human_view.dart';
 import 'package:dengue/src/pages/region_edit.dart';
 import 'package:dengue/src/pages/region_register.dart';
 

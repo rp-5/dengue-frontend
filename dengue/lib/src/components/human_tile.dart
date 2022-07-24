@@ -2,6 +2,7 @@ import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/data/pages_list.dart';
 import 'package:dengue/src/model/human.dart';
 import 'package:dengue/src/pages/human_edit.dart';
+import 'package:dengue/src/pages/human_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -26,9 +27,21 @@ class HumanTile extends StatelessWidget {
       title: Text(human.name),
       subtitle: Text(human.status),
       trailing: SizedBox(
-        width: 100,
+        width: 120,
         child: Row(
           children: <Widget>[
+            IconButton( 
+              icon: const Icon(FeatherIcons.eye),
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HumanView(human: human),
+                    )).then((value) {
+                  listHuman = _humanRegisterController.fetchHumanList();
+                });
+              },
+              ),
             IconButton(
               icon: const Icon(FeatherIcons.edit),
               onPressed: () {
