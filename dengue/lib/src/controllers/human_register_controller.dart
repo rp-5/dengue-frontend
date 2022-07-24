@@ -54,7 +54,7 @@ class HumanRegisterController {
   // List humans registers
   Future<List<Human>> fetchHumanList() async {
     final response =
-        await http.get(Uri.parse('http://10.2.172.158:8080/list/human'));
+        await http.get(Uri.parse('http://192.168.1.11:8080/list/human'));
     if (response.statusCode == 200) {
       List humanResponse = jsonDecode(response.body);
 
@@ -68,7 +68,7 @@ class HumanRegisterController {
   Future createHumanCases(context) async {
     try {
       var response = await http.post(
-        Uri.parse('http://10.2.172.158:8080/form/save'),
+        Uri.parse('http://192.168.1.11:8080/form/save'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -103,7 +103,7 @@ class HumanRegisterController {
   Future editHumanCase(humanIdToEdit, context) async {
     try {
       var response = await http.put(
-        Uri.parse('http://10.2.172.158:8080/edit/human/$humanIdToEdit'),
+        Uri.parse('http://192.168.1.11:8080/edit/human/$humanIdToEdit'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -142,7 +142,7 @@ class HumanRegisterController {
   // Delete human case
   Future deleteHumanCase(humanIdToDelete, context) async {
     final response = await http.delete(
-        Uri.parse('http://10.2.172.158:8080/delete/human/$humanIdToDelete'));
+        Uri.parse('http://192.168.1.11:8080/delete/human/$humanIdToDelete'));
 
     if (response.statusCode == 200) {
       Navigator.pop(context);

@@ -29,7 +29,7 @@ class RegionRegisterController {
   //List region registers
   Future<List<Region>> fetchRegionList() async {
     final response =
-        await http.get(Uri.parse('http://10.2.172.158:8081/list/region'));
+        await http.get(Uri.parse('http://192.168.1.11:8081/list/region'));
     if (response.statusCode == 200) {
       List regionResponse = jsonDecode(response.body);
 
@@ -43,7 +43,7 @@ class RegionRegisterController {
   Future createRegionCases(context) async {
     try {
       var response = await http.post(
-        Uri.parse('http://10.2.172.158:8081/form/region/save'),
+        Uri.parse('http://192.168.1.11:8081/form/region/save'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           "Accept": "application/json",
@@ -78,7 +78,7 @@ class RegionRegisterController {
   Future editRegionCase(regionIdToEdit, context) async {
     try {
       var response = await http.put(
-        Uri.parse('http://10.2.172.158:8081/edit/region/$regionIdToEdit'),
+        Uri.parse('http://192.168.1.11:8081/edit/region/$regionIdToEdit'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -114,7 +114,7 @@ class RegionRegisterController {
 
   Future deleteRegionCase(regionIdToDelete, context) async {
     final response = await http.delete(
-        Uri.parse('http://10.2.172.158:8081/delete/region/$regionIdToDelete'));
+        Uri.parse('http://192.168.1.11:8081/delete/region/$regionIdToDelete'));
 
     if (response.statusCode == 200) {
       Navigator.push(

@@ -16,11 +16,16 @@ dependencies:
   animated_bottom_navigation_bar: ^1.0.1
   flutter_feather_icons: ^2.0.0+1
   http: ^0.13.4
+  charts_flutter: ^0.12.0
+  font_awesome_flutter: ^10.1.0
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  
+
 
 flutter:
   uses-material-design: true
