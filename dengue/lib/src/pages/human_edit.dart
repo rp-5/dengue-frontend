@@ -146,13 +146,10 @@ class HumanEditState extends State<HumanEdit> {
               const SizedBox(
                 height: 20,
               ),
+              const Text('Sintomas:',
+              style: TextStyle(fontSize: 17) ),
               Row(
                 children: [
-                  const Text('Sintomas:'),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text("Febre Alta"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,
@@ -164,11 +161,8 @@ class HumanEditState extends State<HumanEdit> {
                       });
                     },
                   ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("Manchas Vermelhas"),
+                  Text("Febre Alta"),
+                  SizedBox(width: 62,),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,
@@ -180,11 +174,11 @@ class HumanEditState extends State<HumanEdit> {
                       });
                     },
                   ),
+                  Text("Manchas Vermelhas"),
                 ],
               ),
               Row(
                 children: [
-                  Text("Dor de cabeça"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,
@@ -196,11 +190,8 @@ class HumanEditState extends State<HumanEdit> {
                       });
                     },
                   ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("Nausea"),
+                  Text("Dor de cabeça"),
+                  SizedBox(width: 36.5,),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,
@@ -212,11 +203,11 @@ class HumanEditState extends State<HumanEdit> {
                       });
                     },
                   ),
+                  Text("Nausea"),
                 ],
               ),
               Row(
                 children: [
-                  Text("Dor atrás dos olhos"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,
@@ -228,11 +219,8 @@ class HumanEditState extends State<HumanEdit> {
                       });
                     },
                   ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("Dor no corpo"),
+                  Text("Dor atrás dos olhos"),
+                  SizedBox(width: 5,),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,
@@ -244,11 +232,11 @@ class HumanEditState extends State<HumanEdit> {
                       });
                     },
                   ),
+                  Text("Dor no corpo"),
                 ],
               ),
               Row(
                 children: [
-                  Text("Cansaço extremo"),
                   Checkbox(
                     checkColor: Colors.black,
                     activeColor: Colors.green,
@@ -260,11 +248,13 @@ class HumanEditState extends State<HumanEdit> {
                       });
                     },
                   ),
+                  Text("Cansaço extremo"),
                 ],
               ),
               Row(
                 children: [
-                  const Text('Gravidade:'),
+                  const Text('Gravidade:',
+                  style: TextStyle(fontSize: 16),),
                   const SizedBox(
                     width: 10,
                   ),
@@ -289,7 +279,8 @@ class HumanEditState extends State<HumanEdit> {
               ),
               Row(
                 children: [
-                  const Text('Status:'),
+                  const Text('Status:',
+                  style: TextStyle(fontSize: 16),),
                   const SizedBox(
                     width: 10,
                   ),
