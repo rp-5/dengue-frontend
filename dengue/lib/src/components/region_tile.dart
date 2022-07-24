@@ -5,6 +5,8 @@ import 'package:dengue/src/pages/region_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
+import '../pages/region_view.dart';
+
 class RegionTile extends StatelessWidget {
   final RegionRegisterController _regionRegisterController =
       RegionRegisterController();
@@ -20,9 +22,20 @@ class RegionTile extends StatelessWidget {
       title: Text(region.address),
       subtitle: Text(region.city),
       trailing: SizedBox(
-        width: 100,
+        width: 120,
         child: Row(
           children: <Widget>[
+            IconButton( 
+              icon: const Icon(FeatherIcons.eye),
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RegionView(region: region),
+                    )).then((value) {
+                });
+              },
+              ),
             IconButton(
               icon: const Icon(FeatherIcons.edit),
               onPressed: () {
