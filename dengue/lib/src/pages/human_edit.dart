@@ -146,10 +146,16 @@ class HumanEditState extends State<HumanEdit> {
                   onChanged: (value) =>
                       _humanRegisterController.setComplement(value),
                 ),
-                const SizedBox(
-                  height: 20,
+                Row(
+                  children: [
+                    const Text(
+                      'Sintomas:',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
                 ),
-                const Text('Sintomas:', style: TextStyle(fontSize: 17)),
                 Row(
                   children: [
                     Checkbox(

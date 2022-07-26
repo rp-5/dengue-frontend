@@ -119,11 +119,15 @@ class HumanRegisterState extends State<HumanRegister> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  'Sintomas:',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
+                Row(
+                  children: [
+                    const Text(
+                      'Sintomas:',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 10,
