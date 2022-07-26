@@ -12,7 +12,7 @@ class RegionRegister extends StatefulWidget {
 class RegionRegisterState extends State<RegionRegister> {
   final RegionRegisterController _regionRegisterController =
       RegionRegisterController();
-  
+
   final formKey = GlobalKey<FormState>();
 
   List<String> santading_water = <String>['Sim', 'Nao'];
@@ -21,13 +21,12 @@ class RegionRegisterState extends State<RegionRegister> {
   List<String> mosquito_larva = <String>['Sim', 'Nao'];
   String dropdownMosquito = 'Nao';
 
-@override
-void initState() {
+  @override
+  void initState() {
     _regionRegisterController.setSantandingWater('Nao');
     _regionRegisterController.setMosquitoLarva('Nao');
     super.initState();
   }
-  
 
   // String isSelectedAgua = 'false';
   // String isSelectedLarva = 'false';
@@ -54,119 +53,144 @@ void initState() {
       appBar: AppBar(
         title: const Text('Registro de Infestação no Município'),
         backgroundColor: AppColors.secondary,
-        actions: [
-          IconButton(
-            icon: const Icon(FeatherIcons.save),
-            onPressed: () {
-              if(formKey.currentState!.validate()){
-              _regionRegisterController.createRegionCases(context);
-              }
-            },
-          ),
-          const SizedBox(
-            width: 10,
-          )
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
-        child: Form(
-          key:formKey,
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 5,),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Endereço*'),
-                onChanged: (value) =>
-                    _regionRegisterController.setAddress(value),
-                validator: (value){
-                  if(value!.isEmpty){
-                    return "O endereço não pode estar vazio.";
-                  }else{
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Bairro*'),
-                onChanged: (value) =>
-                    _regionRegisterController.setDistrict(value),
-                validator: (value){
-                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
-                    return "Escreva bairro corretamente.";
-                  }else{
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Cidade*'),
-                onChanged: (value) => _regionRegisterController.setCity(value),
-                validator: (value){
-                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
-                    return "Escreva a cidade corretamente.";
-                  }else{
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  const Text('Água parada?'),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  DropdownButton(
-                    value: dropdownWater,
-                    items: santading_water.map<DropdownMenuItem<String>>(
-                      (String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 5,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Endereço*'),
+                  onChanged: (value) =>
+                      _regionRegisterController.setAddress(value),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "O endereço não pode estar vazio.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Bairro*'),
+                  onChanged: (value) =>
+                      _regionRegisterController.setDistrict(value),
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                      return "Escreva bairro corretamente.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Cidade*'),
+                  onChanged: (value) =>
+                      _regionRegisterController.setCity(value),
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                      return "Escreva a cidade corretamente.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    const Text('Água parada?'),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    DropdownButton(
+                      value: dropdownWater,
+                      items: santading_water.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String? value) {
+                        setState(() {
+                          dropdownWater = value!;
+                        });
+                        _regionRegisterController.setSantandingWater(value!);
                       },
-                    ).toList(),
-                    onChanged: (String? value) {
-                      setState(() {
-                        dropdownWater = value!;
-                      });
-                      _regionRegisterController.setSantandingWater(value!);
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text('Mosquito da Dengue?'),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  DropdownButton(
-                    value: dropdownMosquito,
-                    items: santading_water.map<DropdownMenuItem<String>>(
-                      (String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text('Mosquito da Dengue?'),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    DropdownButton(
+                      value: dropdownMosquito,
+                      items: santading_water.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String? value) {
+                        setState(() {
+                          dropdownMosquito = value!;
+                        });
+                        _regionRegisterController.setMosquitoLarva(value!);
                       },
-                    ).toList(),
-                    onChanged: (String? value) {
-                      setState(() {
-                        dropdownMosquito = value!;
-                      });
-                      _regionRegisterController.setMosquitoLarva(value!);
-                    },
-                  )
-                ],
-              ),
-            ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text("Registrar"),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(FeatherIcons.arrowRight),
+                        ],
+                      ),
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          _regionRegisterController.createRegionCases(context);
+                        }
+                      },
+                      style: TextButton.styleFrom(
+                          minimumSize: Size(95, 43),
+                          primary: AppColors.white,
+                          backgroundColor: AppColors.green,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          textStyle: TextStyle(fontSize: 18)),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
         ),
       ),
     );

@@ -53,241 +53,282 @@ class HumanRegisterState extends State<HumanRegister> {
       appBar: AppBar(
         title: const Text('Registro de Caso em Humano'),
         backgroundColor: AppColors.secondary,
-        actions: [
-          IconButton(
-            icon: const Icon(FeatherIcons.save),
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                _humanRegisterController.createHumanCases(context);
-              }
-            },
-          ),
-          const SizedBox(
-            width: 10,
-          )
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 5,),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Nome completo*'),
-                onChanged: (value) => _humanRegisterController.setName(value),
-                validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Escreva o nome corretamente.";
-                  } else {
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Idade*',),
-                onChanged: (value) => _humanRegisterController.setAge(value),
-                validator: (value) {
-                  if (value!.isEmpty || !RegExp(r'^[0-9]+$').hasMatch(value)) {
-                    return "Informe a idade correta.";
-                  } else {
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Endereço*'),
-                onChanged: (value) =>
-                    _humanRegisterController.setAddress(value),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "O Endereço não pode estar vazio.";
-                  } else {
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Complemento'),
-                onChanged: (value) =>
-                    _humanRegisterController.setComplement(value),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text('Sintomas:',
-              style: TextStyle(
-                fontSize: 17,
-              ),),
-              SizedBox(height: 10,),
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: this.febre,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        this.febre = value!;
-                        _humanRegisterController.setFebre(febre);
-                      });
-                    },  
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 5,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Nome completo*'),
+                  onChanged: (value) => _humanRegisterController.setName(value),
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                      return "Escreva o nome corretamente.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Idade*',
                   ),
-                  Text("Febre Alta"),
-                  SizedBox(width: 62,),
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: this.manchas,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        this.manchas = value!;
-                        _humanRegisterController.setManchas(manchas);
-                      });
-                    },
-                  ),
-                  Text("Manchas Vermelhas"),
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: this.dorCab,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        this.dorCab = value!;
-                        _humanRegisterController.setdorCabeca(dorCab);
-                      });
-                    },
-                  ),
-                  Text("Dor de cabeça"),
-                  SizedBox(width: 36.5,),
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: this.nausea,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        this.nausea = value!;
-                        _humanRegisterController.setNausea(nausea);
-                      });
-                    },
-                  ),
-                  Text("Nausea"),
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: this.dorOlhos,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        this.dorOlhos = value!;
-                        _humanRegisterController.setDorOlhos(dorOlhos);
-                      });
-                    },
-                  ),
-                  Text("Dor atrás dos olhos"),
-                  SizedBox(width: 5,),
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: this.dorCorpo,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        this.dorCorpo = value!;
-                        _humanRegisterController.setDorCorpo(dorCorpo);
-                      });
-                    },
-                  ),
-                  Text("Dor no corpo"),
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: this.cansaco,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        this.cansaco = value!;
-                        _humanRegisterController.setCansaco(cansaco);
-                      });
-                    },
-                  ),
-                  Text("Cansaço extremo"),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text('Gravidade:',
+                  onChanged: (value) => _humanRegisterController.setAge(value),
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                      return "Informe a idade correta.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Endereço*'),
+                  onChanged: (value) =>
+                      _humanRegisterController.setAddress(value),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "O Endereço não pode estar vazio.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Complemento'),
+                  onChanged: (value) =>
+                      _humanRegisterController.setComplement(value),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  'Sintomas:',
                   style: TextStyle(
-                    fontSize: 16
-                  ),),
-                  const SizedBox(
-                    width: 10,
+                    fontSize: 17,
                   ),
-                  DropdownButton(
-                    value: dropdownGravidade,
-                    items: gravidade.map<DropdownMenuItem<String>>(
-                      (String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: this.febre,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          this.febre = value!;
+                          _humanRegisterController.setFebre(febre);
+                        });
                       },
-                    ).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownGravidade = newValue!;
-                      });
-                      _humanRegisterController.setGravity(newValue!);
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text('Status:',
-                  style: TextStyle(
-                    fontSize: 16
-                  ),),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  DropdownButton(
-                    value: dropdownStatus,
-                    items: status.map<DropdownMenuItem<String>>(
-                      (String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
+                    ),
+                    Text("Febre Alta"),
+                    SizedBox(
+                      width: 62,
+                    ),
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: this.manchas,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          this.manchas = value!;
+                          _humanRegisterController.setManchas(manchas);
+                        });
                       },
-                    ).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownStatus = newValue!;
-                      });
-                      _humanRegisterController.setStatus(newValue!);
-                    },
-                  ),
-                ],
-              ),
-            ],
+                    ),
+                    Text("Manchas Vermelhas"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: this.dorCab,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          this.dorCab = value!;
+                          _humanRegisterController.setdorCabeca(dorCab);
+                        });
+                      },
+                    ),
+                    Text("Dor de cabeça"),
+                    SizedBox(
+                      width: 36.5,
+                    ),
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: this.nausea,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          this.nausea = value!;
+                          _humanRegisterController.setNausea(nausea);
+                        });
+                      },
+                    ),
+                    Text("Nausea"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: this.dorOlhos,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          this.dorOlhos = value!;
+                          _humanRegisterController.setDorOlhos(dorOlhos);
+                        });
+                      },
+                    ),
+                    Text("Dor atrás dos olhos"),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: this.dorCorpo,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          this.dorCorpo = value!;
+                          _humanRegisterController.setDorCorpo(dorCorpo);
+                        });
+                      },
+                    ),
+                    Text("Dor no corpo"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: this.cansaco,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          this.cansaco = value!;
+                          _humanRegisterController.setCansaco(cansaco);
+                        });
+                      },
+                    ),
+                    Text("Cansaço extremo"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Gravidade:',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    DropdownButton(
+                      value: dropdownGravidade,
+                      items: gravidade.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownGravidade = newValue!;
+                        });
+                        _humanRegisterController.setGravity(newValue!);
+                      },
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Status:',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    DropdownButton(
+                      value: dropdownStatus,
+                      items: status.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownStatus = newValue!;
+                        });
+                        _humanRegisterController.setStatus(newValue!);
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text("Registrar"),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(FeatherIcons.arrowRight),
+                        ],
+                      ),
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          _humanRegisterController.createHumanCases(context);
+                        }
+                      },
+                      style: TextButton.styleFrom(
+                          minimumSize: Size(95, 43),
+                          primary: AppColors.white,
+                          backgroundColor: AppColors.green,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          textStyle: TextStyle(fontSize: 18)),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
         ),
       ),
     );

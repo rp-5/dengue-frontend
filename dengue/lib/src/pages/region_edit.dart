@@ -15,7 +15,7 @@ class RegionEdit extends StatefulWidget {
 class RegionEditState extends State<RegionEdit> {
   final RegionRegisterController _regionRegisterController =
       RegionRegisterController();
-  
+
   final formKey = GlobalKey<FormState>();
 
   List<String> santading_water = <String>['Sim', 'Nao'];
@@ -59,151 +59,174 @@ class RegionEditState extends State<RegionEdit> {
       appBar: AppBar(
         title: const Text('Edição de Infestação por Município'),
         backgroundColor: AppColors.secondary,
-        actions: [
-          IconButton(
-            icon: const Icon(FeatherIcons.save),
-            onPressed: () async {
-              if(formKey.currentState!.validate()){
-              await _regionRegisterController.editRegionCase(
-                  widget.region.id, context);
-              }
-            },
-          ),
-          const SizedBox(
-            width: 10,
-          )
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Endereço*'),
-                initialValue: widget.region.address,
-                onChanged: (value) =>
-                    _regionRegisterController.setAddress(value),
-                validator: (value){
-                  if(value!.isEmpty){
-                    return "O endereço não pode estar vazio.";
-                  }else{
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Bairro*'),
-                initialValue: widget.region.district,
-                onChanged: (value) =>
-                    _regionRegisterController.setDistrict(value),
-                validator: (value){
-                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
-                    return "Escreva bairro corretamente.";
-                  }else{
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Cidade*'),
-                initialValue: widget.region.city,
-                onChanged: (value) => _regionRegisterController.setCity(value),
-                validator: (value){
-                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
-                    return "Escreva a cidade corretamente.";
-                  }else{
-                    return null;
-                  }
-                },
-              ),
-              Row(
-                children: [
-                  const Text('Água parada?'),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  DropdownButton(
-                    value: _regionRegisterController.getSantandingWater(),
-                    items: santading_water.map<DropdownMenuItem<String>>(
-                      (String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 10),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Endereço*'),
+                  initialValue: widget.region.address,
+                  onChanged: (value) =>
+                      _regionRegisterController.setAddress(value),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "O endereço não pode estar vazio.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Bairro*'),
+                  initialValue: widget.region.district,
+                  onChanged: (value) =>
+                      _regionRegisterController.setDistrict(value),
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                      return "Escreva bairro corretamente.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Cidade*'),
+                  initialValue: widget.region.city,
+                  onChanged: (value) =>
+                      _regionRegisterController.setCity(value),
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                      return "Escreva a cidade corretamente.";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                Row(
+                  children: [
+                    const Text('Água parada?'),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    DropdownButton(
+                      value: _regionRegisterController.getSantandingWater(),
+                      items: santading_water.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String? value) {
+                        setState(() {
+                          dropdownWater = value!;
+                        });
+                        _regionRegisterController.setSantandingWater(value!);
                       },
-                    ).toList(),
-                    onChanged: (String? value) {
-                      setState(() {
-                        dropdownWater = value!;
-                      });
-                      _regionRegisterController.setSantandingWater(value!);
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text('Mosquito da Dengue?'),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  DropdownButton(
-                    value: _regionRegisterController.getMosquitoLarva(),
-                    items: mosquito_larva.map<DropdownMenuItem<String>>(
-                      (String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text('Mosquito da Dengue?'),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    DropdownButton(
+                      value: _regionRegisterController.getMosquitoLarva(),
+                      items: mosquito_larva.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String? value) {
+                        setState(() {
+                          dropdownMosquito = value!;
+                        });
+                        _regionRegisterController.setMosquitoLarva(value!);
                       },
-                    ).toList(),
-                    onChanged: (String? value) {
-                      setState(() {
-                        dropdownMosquito = value!;
-                      });
-                      _regionRegisterController.setMosquitoLarva(value!);
-                    },
-                  ),
-                ],
-              ),
-              // Row(
-              //   children: [
-              //     const Text('Água parada '),
-              //     Checkbox(
-              //       fillColor: MaterialStateProperty.resolveWith(getColor),
-              //       value: isSelectedAgua,
-              //       onChanged: (bool? value) {
-              //         setState(() {
-              //           _regionRegisterController.setSantandingWater(value!);
-              //         });
+                    ),
+                  ],
+                ),
+                // Row(
+                //   children: [
+                //     const Text('Água parada '),
+                //     Checkbox(
+                //       fillColor: MaterialStateProperty.resolveWith(getColor),
+                //       value: isSelectedAgua,
+                //       onChanged: (bool? value) {
+                //         setState(() {
+                //           _regionRegisterController.setSantandingWater(value!);
+                //         });
 
-              //       },
-              //     ),
-              //   ],
-              // ),
-              // Row(
-              //   children: [
-              //     const Text('Larva de Mosquito da Dengue '),
-              //     Checkbox(
-              //       fillColor: MaterialStateProperty.resolveWith(getColor),
-              //       value: isSelectedLarva,
-              //       onChanged: (bool? value) {
-              //         setState(() {
-              //           _regionRegisterController.setMosquitoLarva(value!);
-              //         });
-              //       },
-              //     ),
-              //   ],
-              // ),
-            ],
+                //       },
+                //     ),
+                //   ],
+                // ),
+                // Row(
+                //   children: [
+                //     const Text('Larva de Mosquito da Dengue '),
+                //     Checkbox(
+                //       fillColor: MaterialStateProperty.resolveWith(getColor),
+                //       value: isSelectedLarva,
+                //       onChanged: (bool? value) {
+                //         setState(() {
+                //           _regionRegisterController.setMosquitoLarva(value!);
+                //         });
+                //       },
+                //     ),
+                //   ],
+                // ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text("Salvar"),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(FeatherIcons.arrowRight),
+                        ],
+                      ),
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          await _regionRegisterController.editRegionCase(
+                              widget.region.id, context);
+                        }
+                      },
+                      style: TextButton.styleFrom(
+                          minimumSize: Size(95, 43),
+                          primary: AppColors.white,
+                          backgroundColor: AppColors.green,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          textStyle: TextStyle(fontSize: 18)),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
         ),
       ),
     );
