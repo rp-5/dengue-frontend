@@ -2,6 +2,7 @@ import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/region_register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter/cupertino.dart';
 
 class RegionRegister extends StatefulWidget {
   @override
@@ -28,8 +29,29 @@ class RegionRegisterState extends State<RegionRegister> {
     super.initState();
   }
 
-  // String isSelectedAgua = 'false';
-  // String isSelectedLarva = 'false';
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _pickDate(BuildContext context) async {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      builder: (context) {
+        return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+          return CupertinoDatePicker(
+              minimumYear: 2015,
+              maximumYear: DateTime.now().year,
+              initialDateTime: selectedDate,
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: (selectedDate) {
+                setState(() => this.selectedDate = selectedDate);
+              });
+        });
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,6 +174,24 @@ class RegionRegisterState extends State<RegionRegister> {
                         });
                         _regionRegisterController.setMosquitoLarva(value!);
                       },
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: TextField(
+                        readOnly: true,
+                        onTap: () => _pickDate(context),
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "${selectedDate.toLocal()}".split(' ')[0],
+                        ),
+                      ),
                     )
                   ],
                 ),

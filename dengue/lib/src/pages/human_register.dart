@@ -2,6 +2,7 @@ import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter/cupertino.dart';
 
 class HumanRegister extends StatefulWidget {
   @override
@@ -42,6 +43,30 @@ class HumanRegisterState extends State<HumanRegister> {
   bool dorOlhos = false;
   bool dorCorpo = false;
   bool cansaco = false;
+
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _pickDate(BuildContext context) async {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      builder: (context) {
+        return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+          return CupertinoDatePicker(
+              minimumYear: 2015,
+              maximumYear: DateTime.now().year,
+              initialDateTime: selectedDate,
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: (selectedDate) {
+                setState(() => this.selectedDate = selectedDate);
+              });
+        });
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +172,7 @@ class HumanRegisterState extends State<HumanRegister> {
                     ),
                     Text("Febre Alta"),
                     SizedBox(
-                      width: 62,
+                      width: 26,
                     ),
                     Checkbox(
                       checkColor: Colors.black,
@@ -177,9 +202,6 @@ class HumanRegisterState extends State<HumanRegister> {
                       },
                     ),
                     Text("Dor de cabeça"),
-                    SizedBox(
-                      width: 36.5,
-                    ),
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
@@ -191,7 +213,7 @@ class HumanRegisterState extends State<HumanRegister> {
                         });
                       },
                     ),
-                    Text("Nausea"),
+                    Text("Náusea"),
                   ],
                 ),
                 Row(
@@ -207,9 +229,9 @@ class HumanRegisterState extends State<HumanRegister> {
                         });
                       },
                     ),
-                    Text("Dor atrás dos olhos"),
+                    Text("Dor atrás dos\n olhos"),
                     SizedBox(
-                      width: 5,
+                      width: 7,
                     ),
                     Checkbox(
                       checkColor: Colors.black,
@@ -295,6 +317,24 @@ class HumanRegisterState extends State<HumanRegister> {
                         _humanRegisterController.setStatus(newValue!);
                       },
                     ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: TextField(
+                        readOnly: true,
+                        onTap: () => _pickDate(context),
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "${selectedDate.toLocal()}".split(' ')[0],
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 SizedBox(
