@@ -31,6 +31,9 @@ class RegionRegisterState extends State<RegionRegister> {
 
   DateTime selectedDate = DateTime.now();
 
+  TextEditingController dateControl =
+      new TextEditingController(text: 'Pressione para escolher a data!');
+
   Future<void> _pickDate(BuildContext context) async {
     showModalBottomSheet(
       context: context,
@@ -46,7 +49,11 @@ class RegionRegisterState extends State<RegionRegister> {
               initialDateTime: selectedDate,
               mode: CupertinoDatePickerMode.date,
               onDateTimeChanged: (selectedDate) {
-                setState(() => this.selectedDate = selectedDate);
+                setState(() => {
+                      this.selectedDate = selectedDate,
+                      dateControl.text =
+                          '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}'
+                    });
               });
         });
       },
@@ -185,12 +192,12 @@ class RegionRegisterState extends State<RegionRegister> {
                     Flexible(
                       flex: 1,
                       child: TextField(
+                        controller: dateControl,
                         readOnly: true,
                         onTap: () => _pickDate(context),
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "${selectedDate.toLocal()}".split(' ')[0],
-                        ),
+                            border: OutlineInputBorder(),
+                            labelText: "Data ( dd/mm/aaaa )"),
                       ),
                     )
                   ],

@@ -46,6 +46,9 @@ class HumanRegisterState extends State<HumanRegister> {
 
   DateTime selectedDate = DateTime.now();
 
+  TextEditingController dateControl =
+      new TextEditingController(text: 'Pressione para escolher a data!');
+
   Future<void> _pickDate(BuildContext context) async {
     showModalBottomSheet(
       context: context,
@@ -61,7 +64,11 @@ class HumanRegisterState extends State<HumanRegister> {
               initialDateTime: selectedDate,
               mode: CupertinoDatePickerMode.date,
               onDateTimeChanged: (selectedDate) {
-                setState(() => this.selectedDate = selectedDate);
+                setState(() => {
+                      this.selectedDate = selectedDate,
+                      dateControl.text =
+                          '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}'
+                    });
               });
         });
       },
@@ -327,12 +334,12 @@ class HumanRegisterState extends State<HumanRegister> {
                     Flexible(
                       flex: 1,
                       child: TextField(
+                        controller: dateControl,
                         readOnly: true,
                         onTap: () => _pickDate(context),
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "${selectedDate.toLocal()}".split(' ')[0],
-                        ),
+                            border: OutlineInputBorder(),
+                            labelText: "Data ( dd/mm/aaaa )"),
                       ),
                     )
                   ],
