@@ -32,32 +32,50 @@ class RegionRegisterState extends State<RegionRegister> {
   DateTime selectedDate = DateTime.now();
 
   TextEditingController dateControl =
-      new TextEditingController(text: 'Pressione para escolher a data!');
+      TextEditingController(text: 'Pressione para escolher a data!');
 
   Future<void> _pickDate(BuildContext context) async {
-    showModalBottomSheet(
-      context: context,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-      builder: (context) {
-        return StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {
-          return CupertinoDatePicker(
-              minimumYear: 2015,
-              maximumYear: DateTime.now().year,
-              initialDateTime: selectedDate,
-              mode: CupertinoDatePickerMode.date,
-              onDateTimeChanged: (selectedDate) {
-                setState(() => {
-                      this.selectedDate = selectedDate,
-                      dateControl.text =
-                          '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}'
-                    });
-              });
-        });
-      },
-    );
+    showCupertinoModalPopup(
+        context: context,
+        builder: (_) => Container(
+              height: 320,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50)),
+                  color: AppColors.white),
+              child: Column(
+                children: [
+                  SizedBox(
+                      height: 250,
+                      child: CupertinoDatePicker(
+                          dateOrder: DatePickerDateOrder.dmy,
+                          minimumYear: 2015,
+                          maximumYear: DateTime.now().year,
+                          initialDateTime: selectedDate,
+                          mode: CupertinoDatePickerMode.date,
+                          onDateTimeChanged: (selectedDate) {
+                            setState(() => {
+                                  this.selectedDate = selectedDate,
+                                  dateControl.text =
+                                      '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}'
+                                });
+                          })),
+                  // Close the modal
+                  CupertinoButton(
+                    child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Icon(
+                        FeatherIcons.arrowRight,
+                        size: 30,
+                        color: AppColors.green,
+                      ),
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
+              ),
+            ));
   }
 
   @override
@@ -90,11 +108,11 @@ class RegionRegisterState extends State<RegionRegister> {
             key: formKey,
             child: Column(
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Endereço*'),
+                  decoration: const InputDecoration(labelText: 'Endereço*'),
                   onChanged: (value) =>
                       _regionRegisterController.setAddress(value),
                   validator: (value) {
@@ -105,9 +123,9 @@ class RegionRegisterState extends State<RegionRegister> {
                     }
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Bairro*'),
+                  decoration: const InputDecoration(labelText: 'Bairro*'),
                   onChanged: (value) =>
                       _regionRegisterController.setDistrict(value),
                   validator: (value) {
@@ -119,9 +137,9 @@ class RegionRegisterState extends State<RegionRegister> {
                     }
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Cidade*'),
+                  decoration: const InputDecoration(labelText: 'Cidade*'),
                   onChanged: (value) =>
                       _regionRegisterController.setCity(value),
                   validator: (value) {
@@ -133,7 +151,7 @@ class RegionRegisterState extends State<RegionRegister> {
                     }
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     const Text('Água parada?'),
@@ -184,7 +202,7 @@ class RegionRegisterState extends State<RegionRegister> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -195,23 +213,36 @@ class RegionRegisterState extends State<RegionRegister> {
                         controller: dateControl,
                         readOnly: true,
                         onTap: () => _pickDate(context),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: "Data ( dd/mm/aaaa )"),
                       ),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          _regionRegisterController.createRegionCases(context);
+                        }
+                      },
+                      style: TextButton.styleFrom(
+                          minimumSize: const Size(95, 43),
+                          primary: AppColors.white,
+                          backgroundColor: AppColors.green,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          textStyle: const TextStyle(fontSize: 18)),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: [
+                        children: const [
                           Text("Registrar"),
                           SizedBox(
                             width: 5,
@@ -219,19 +250,6 @@ class RegionRegisterState extends State<RegionRegister> {
                           Icon(FeatherIcons.arrowRight),
                         ],
                       ),
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          _regionRegisterController.createRegionCases(context);
-                        }
-                      },
-                      style: TextButton.styleFrom(
-                          minimumSize: Size(95, 43),
-                          primary: AppColors.white,
-                          backgroundColor: AppColors.green,
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          textStyle: TextStyle(fontSize: 18)),
                     ),
                   ],
                 )

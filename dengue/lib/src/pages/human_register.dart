@@ -47,32 +47,50 @@ class HumanRegisterState extends State<HumanRegister> {
   DateTime selectedDate = DateTime.now();
 
   TextEditingController dateControl =
-      new TextEditingController(text: 'Pressione para escolher a data!');
+      TextEditingController(text: 'Pressione para escolher a data!');
 
   Future<void> _pickDate(BuildContext context) async {
-    showModalBottomSheet(
-      context: context,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-      builder: (context) {
-        return StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {
-          return CupertinoDatePicker(
-              minimumYear: 2015,
-              maximumYear: DateTime.now().year,
-              initialDateTime: selectedDate,
-              mode: CupertinoDatePickerMode.date,
-              onDateTimeChanged: (selectedDate) {
-                setState(() => {
-                      this.selectedDate = selectedDate,
-                      dateControl.text =
-                          '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}'
-                    });
-              });
-        });
-      },
-    );
+    showCupertinoModalPopup(
+        context: context,
+        builder: (_) => Container(
+              height: 320,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50)),
+                  color: AppColors.white),
+              child: Column(
+                children: [
+                  SizedBox(
+                      height: 250,
+                      child: CupertinoDatePicker(
+                          dateOrder: DatePickerDateOrder.dmy,
+                          minimumYear: 2015,
+                          maximumYear: DateTime.now().year,
+                          initialDateTime: selectedDate,
+                          mode: CupertinoDatePickerMode.date,
+                          onDateTimeChanged: (selectedDate) {
+                            setState(() => {
+                                  this.selectedDate = selectedDate,
+                                  dateControl.text =
+                                      '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}'
+                                });
+                          })),
+                  // Close the modal
+                  CupertinoButton(
+                    child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Icon(
+                        FeatherIcons.arrowRight,
+                        size: 30,
+                        color: AppColors.green,
+                      ),
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
+              ),
+            ));
   }
 
   @override
@@ -93,11 +111,12 @@ class HumanRegisterState extends State<HumanRegister> {
             key: formKey,
             child: Column(
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Nome completo*'),
+                  decoration:
+                      const InputDecoration(labelText: 'Nome completo*'),
                   onChanged: (value) => _humanRegisterController.setName(value),
                   validator: (value) {
                     if (value!.isEmpty ||
@@ -108,11 +127,11 @@ class HumanRegisterState extends State<HumanRegister> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Idade*',
                   ),
                   onChanged: (value) => _humanRegisterController.setAge(value),
@@ -125,7 +144,7 @@ class HumanRegisterState extends State<HumanRegister> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -140,7 +159,7 @@ class HumanRegisterState extends State<HumanRegister> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -152,8 +171,8 @@ class HumanRegisterState extends State<HumanRegister> {
                   height: 20,
                 ),
                 Row(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       'Sintomas:',
                       style: TextStyle(
                         fontSize: 17,
@@ -161,7 +180,7 @@ class HumanRegisterState extends State<HumanRegister> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -169,30 +188,30 @@ class HumanRegisterState extends State<HumanRegister> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: this.febre,
+                      value: febre,
                       onChanged: (bool? value) {
                         setState(() {
-                          this.febre = value!;
+                          febre = value!;
                           _humanRegisterController.setFebre(febre);
                         });
                       },
                     ),
-                    Text("Febre Alta"),
-                    SizedBox(
+                    const Text("Febre Alta"),
+                    const SizedBox(
                       width: 26,
                     ),
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: this.manchas,
+                      value: manchas,
                       onChanged: (bool? value) {
                         setState(() {
-                          this.manchas = value!;
+                          manchas = value!;
                           _humanRegisterController.setManchas(manchas);
                         });
                       },
                     ),
-                    Text("Manchas Vermelhas"),
+                    const Text("Manchas Vermelhas"),
                   ],
                 ),
                 Row(
@@ -200,27 +219,27 @@ class HumanRegisterState extends State<HumanRegister> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: this.dorCab,
+                      value: dorCab,
                       onChanged: (bool? value) {
                         setState(() {
-                          this.dorCab = value!;
+                          dorCab = value!;
                           _humanRegisterController.setdorCabeca(dorCab);
                         });
                       },
                     ),
-                    Text("Dor de cabeça"),
+                    const Text("Dor de cabeça"),
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: this.nausea,
+                      value: nausea,
                       onChanged: (bool? value) {
                         setState(() {
-                          this.nausea = value!;
+                          nausea = value!;
                           _humanRegisterController.setNausea(nausea);
                         });
                       },
                     ),
-                    Text("Náusea"),
+                    const Text("Náusea"),
                   ],
                 ),
                 Row(
@@ -228,30 +247,30 @@ class HumanRegisterState extends State<HumanRegister> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: this.dorOlhos,
+                      value: dorOlhos,
                       onChanged: (bool? value) {
                         setState(() {
-                          this.dorOlhos = value!;
+                          dorOlhos = value!;
                           _humanRegisterController.setDorOlhos(dorOlhos);
                         });
                       },
                     ),
-                    Text("Dor atrás dos\n olhos"),
-                    SizedBox(
+                    const Text("Dor atrás dos\n olhos"),
+                    const SizedBox(
                       width: 7,
                     ),
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: this.dorCorpo,
+                      value: dorCorpo,
                       onChanged: (bool? value) {
                         setState(() {
-                          this.dorCorpo = value!;
+                          dorCorpo = value!;
                           _humanRegisterController.setDorCorpo(dorCorpo);
                         });
                       },
                     ),
-                    Text("Dor no corpo"),
+                    const Text("Dor no corpo"),
                   ],
                 ),
                 Row(
@@ -259,15 +278,15 @@ class HumanRegisterState extends State<HumanRegister> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: this.cansaco,
+                      value: cansaco,
                       onChanged: (bool? value) {
                         setState(() {
-                          this.cansaco = value!;
+                          cansaco = value!;
                           _humanRegisterController.setCansaco(cansaco);
                         });
                       },
                     ),
-                    Text("Cansaço extremo"),
+                    const Text("Cansaço extremo"),
                   ],
                 ),
                 Row(
@@ -326,7 +345,7 @@ class HumanRegisterState extends State<HumanRegister> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -337,23 +356,36 @@ class HumanRegisterState extends State<HumanRegister> {
                         controller: dateControl,
                         readOnly: true,
                         onTap: () => _pickDate(context),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: "Data ( dd/mm/aaaa )"),
                       ),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          _humanRegisterController.createHumanCases(context);
+                        }
+                      },
+                      style: TextButton.styleFrom(
+                          minimumSize: const Size(95, 43),
+                          primary: AppColors.white,
+                          backgroundColor: AppColors.green,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          textStyle: const TextStyle(fontSize: 18)),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: [
+                        children: const [
                           Text("Registrar"),
                           SizedBox(
                             width: 5,
@@ -361,19 +393,6 @@ class HumanRegisterState extends State<HumanRegister> {
                           Icon(FeatherIcons.arrowRight),
                         ],
                       ),
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          _humanRegisterController.createHumanCases(context);
-                        }
-                      },
-                      style: TextButton.styleFrom(
-                          minimumSize: Size(95, 43),
-                          primary: AppColors.white,
-                          backgroundColor: AppColors.green,
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          textStyle: TextStyle(fontSize: 18)),
                     ),
                   ],
                 )
