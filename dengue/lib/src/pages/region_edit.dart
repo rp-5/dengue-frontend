@@ -18,10 +18,10 @@ class RegionEditState extends State<RegionEdit> {
 
   final formKey = GlobalKey<FormState>();
 
-  List<String> santading_water = <String>['Sim', 'Nao'];
+  List<String> santadingWater = <String>['Sim', 'Nao'];
   String dropdownWater = 'Nao';
 
-  List<String> mosquito_larva = <String>['Sim', 'Nao'];
+  List<String> mosquitoLarva = <String>['Sim', 'Nao'];
   String dropdownMosquito = 'Nao';
 
   bool isSelectedAgua = false;
@@ -32,8 +32,8 @@ class RegionEditState extends State<RegionEdit> {
     _regionRegisterController.setAddress(widget.region.address);
     _regionRegisterController.setDistrict(widget.region.district);
     _regionRegisterController.setCity(widget.region.city);
-    _regionRegisterController.setSantandingWater(widget.region.santading_water);
-    _regionRegisterController.setMosquitoLarva(widget.region.mosquito_larva);
+    _regionRegisterController.setSantandingWater(widget.region.santadingWater);
+    _regionRegisterController.setMosquitoLarva(widget.region.mosquitoLarva);
     super.initState();
   }
 
@@ -43,18 +43,6 @@ class RegionEditState extends State<RegionEdit> {
   }
 
   Widget getBody() {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.black;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edição de Infestação por Município'),
@@ -67,9 +55,9 @@ class RegionEditState extends State<RegionEdit> {
             key: formKey,
             child: Column(
               children: <Widget>[
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Endereço*'),
+                  decoration: const InputDecoration(labelText: 'Endereço*'),
                   initialValue: widget.region.address,
                   onChanged: (value) =>
                       _regionRegisterController.setAddress(value),
@@ -81,9 +69,9 @@ class RegionEditState extends State<RegionEdit> {
                     }
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Bairro*'),
+                  decoration: const InputDecoration(labelText: 'Bairro*'),
                   initialValue: widget.region.district,
                   onChanged: (value) =>
                       _regionRegisterController.setDistrict(value),
@@ -96,9 +84,9 @@ class RegionEditState extends State<RegionEdit> {
                     }
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Cidade*'),
+                  decoration: const InputDecoration(labelText: 'Cidade*'),
                   initialValue: widget.region.city,
                   onChanged: (value) =>
                       _regionRegisterController.setCity(value),
@@ -119,7 +107,7 @@ class RegionEditState extends State<RegionEdit> {
                     ),
                     DropdownButton(
                       value: _regionRegisterController.getSantandingWater(),
-                      items: santading_water.map<DropdownMenuItem<String>>(
+                      items: santadingWater.map<DropdownMenuItem<String>>(
                         (String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -144,7 +132,7 @@ class RegionEditState extends State<RegionEdit> {
                     ),
                     DropdownButton(
                       value: _regionRegisterController.getMosquitoLarva(),
-                      items: mosquito_larva.map<DropdownMenuItem<String>>(
+                      items: mosquitoLarva.map<DropdownMenuItem<String>>(
                         (String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -190,23 +178,13 @@ class RegionEditState extends State<RegionEdit> {
                 //     ),
                 //   ],
                 // ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text("Salvar"),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(FeatherIcons.arrowRight),
-                        ],
-                      ),
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           await _regionRegisterController.editRegionCase(
@@ -214,13 +192,23 @@ class RegionEditState extends State<RegionEdit> {
                         }
                       },
                       style: TextButton.styleFrom(
-                          minimumSize: Size(95, 43),
+                          minimumSize: const Size(95, 43),
                           primary: AppColors.white,
                           backgroundColor: AppColors.green,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
-                          textStyle: TextStyle(fontSize: 18)),
+                          textStyle: const TextStyle(fontSize: 18)),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Text("Salvar"),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(FeatherIcons.arrowRight),
+                        ],
+                      ),
                     ),
                   ],
                 )

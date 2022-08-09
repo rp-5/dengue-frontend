@@ -1,9 +1,7 @@
 import 'package:dengue/src/components/human_tile.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
-import 'package:dengue/src/data/human_data.dart';
 import 'package:dengue/src/data/pages_list.dart';
 import 'package:dengue/src/model/human.dart';
-import 'package:dengue/src/pages/human_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:dengue/core/theme/app_colors.dart';
@@ -33,7 +31,6 @@ class HumanCasesState extends State<HumanCases> {
   }
 
   Widget getBody() {
-    // const human = {...humandata};
     return Scaffold(
         appBar: AppBar(
             backgroundColor: AppColors.secondary,
@@ -50,11 +47,11 @@ class HumanCasesState extends State<HumanCases> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => optionList[0]['page'],
-                      )).then((value){
-                         setState(() {
-                          listHuman = _humanRegisterController.fetchHumanList();
-                         });
-                      });
+                      )).then((value) {
+                    setState(() {
+                      listHuman = _humanRegisterController.fetchHumanList();
+                    });
+                  });
                 },
               ),
               const SizedBox(
@@ -78,7 +75,5 @@ class HumanCasesState extends State<HumanCases> {
             return const CircularProgressIndicator();
           },
         ));
-
-    //  HumanTile(human.values.elementAt(index))));
   }
 }

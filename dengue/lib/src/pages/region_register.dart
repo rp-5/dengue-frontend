@@ -16,10 +16,10 @@ class RegionRegisterState extends State<RegionRegister> {
 
   final formKey = GlobalKey<FormState>();
 
-  List<String> santading_water = <String>['Sim', 'Nao'];
+  List<String> santadingWater = <String>['Sim', 'Nao'];
   String dropdownWater = 'Nao';
 
-  List<String> mosquito_larva = <String>['Sim', 'Nao'];
+  List<String> mosquitoLarva = <String>['Sim', 'Nao'];
   String dropdownMosquito = 'Nao';
 
   @override
@@ -84,18 +84,6 @@ class RegionRegisterState extends State<RegionRegister> {
   }
 
   Widget getBody() {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.black;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registro de Infestação no Município'),
@@ -160,7 +148,7 @@ class RegionRegisterState extends State<RegionRegister> {
                     ),
                     DropdownButton(
                       value: dropdownWater,
-                      items: santading_water.map<DropdownMenuItem<String>>(
+                      items: santadingWater.map<DropdownMenuItem<String>>(
                         (String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -185,7 +173,7 @@ class RegionRegisterState extends State<RegionRegister> {
                     ),
                     DropdownButton(
                       value: dropdownMosquito,
-                      items: santading_water.map<DropdownMenuItem<String>>(
+                      items: santadingWater.map<DropdownMenuItem<String>>(
                         (String value) {
                           return DropdownMenuItem<String>(
                             value: value,

@@ -2,7 +2,6 @@ import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/components/region_tile.dart';
 import 'package:dengue/src/controllers/region_register_controller.dart';
 import 'package:dengue/src/data/pages_list.dart';
-import 'package:dengue/src/data/region_data.dart';
 import 'package:dengue/src/model/region.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';

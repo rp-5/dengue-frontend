@@ -1,11 +1,7 @@
-import 'dart:developer';
-
 import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/model/human.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:flutter/foundation.dart';
 
 class HumanView extends StatefulWidget {
   @override
@@ -79,19 +75,20 @@ class HumanViewState extends State<HumanView> {
             key: formKey,
             child: Column(
               children: <Widget>[
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 TextFormField(
                   enabled: false,
                   initialValue: widget.human.name,
-                  decoration: InputDecoration(labelText: 'Nome completo*'),
+                  decoration:
+                      const InputDecoration(labelText: 'Nome completo*'),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   initialValue: widget.human.age.toString(),
-                  decoration: InputDecoration(labelText: 'Idade*'),
+                  decoration: const InputDecoration(labelText: 'Idade*'),
                   enabled: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -99,7 +96,7 @@ class HumanViewState extends State<HumanView> {
                   decoration: const InputDecoration(labelText: 'Endereço*'),
                   enabled: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(

@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/model/human.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:flutter/foundation.dart';
 
 class HumanEdit extends StatefulWidget {
   @override
@@ -20,8 +17,6 @@ class HumanEditState extends State<HumanEdit> {
       HumanRegisterController();
 
   final formKey = GlobalKey<FormState>();
-  // List<String> sintomas = <String>['Tosse', 'Febre'];
-  // String dropdownSintoma = 'Tosse';
 
   List<String> gravidade = <String>['Baixa', 'Media', 'Alta'];
   String dropdownGravidade = 'Baixa';
@@ -40,7 +35,6 @@ class HumanEditState extends State<HumanEdit> {
     _humanRegisterController.setAge(widget.human.age.toString());
     _humanRegisterController.setAddress(widget.human.address);
     _humanRegisterController.setComplement(widget.human.complement ?? '');
-    // _humanRegisterController.setSymptom(widget.human.symptom);
     _humanRegisterController.setGravity(widget.human.gravity);
     _humanRegisterController.setStatus(widget.human.status);
     _humanRegisterController.setFebre(widget.human.febre);
@@ -93,10 +87,11 @@ class HumanEditState extends State<HumanEdit> {
             key: formKey,
             child: Column(
               children: <Widget>[
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 TextFormField(
                   initialValue: widget.human.name,
-                  decoration: InputDecoration(labelText: 'Nome completo*'),
+                  decoration:
+                      const InputDecoration(labelText: 'Nome completo*'),
                   onChanged: (value) => _humanRegisterController.setName(value),
                   validator: (value) {
                     if (value!.isEmpty ||
@@ -107,10 +102,10 @@ class HumanEditState extends State<HumanEdit> {
                     }
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   initialValue: widget.human.age.toString(),
-                  decoration: InputDecoration(labelText: 'Idade*'),
+                  decoration: const InputDecoration(labelText: 'Idade*'),
                   onChanged: (value) => _humanRegisterController.setAge(value),
                   validator: (value) {
                     if (value!.isEmpty ||
@@ -121,7 +116,7 @@ class HumanEditState extends State<HumanEdit> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -137,7 +132,7 @@ class HumanEditState extends State<HumanEdit> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -147,8 +142,8 @@ class HumanEditState extends State<HumanEdit> {
                       _humanRegisterController.setComplement(value),
                 ),
                 Row(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       'Sintomas:',
                       style: TextStyle(
                         fontSize: 17,
@@ -164,13 +159,13 @@ class HumanEditState extends State<HumanEdit> {
                       value: _humanRegisterController.getFebre(),
                       onChanged: (bool? value) {
                         setState(() {
-                          this.febre = value!;
+                          febre = value!;
                           _humanRegisterController.setFebre(febre);
                         });
                       },
                     ),
-                    Text("Febre Alta"),
-                    SizedBox(
+                    const Text("Febre Alta"),
+                    const SizedBox(
                       width: 62,
                     ),
                     Checkbox(
@@ -179,12 +174,12 @@ class HumanEditState extends State<HumanEdit> {
                       value: _humanRegisterController.getManchas(),
                       onChanged: (bool? value) {
                         setState(() {
-                          this.manchas = value!;
+                          manchas = value!;
                           _humanRegisterController.setManchas(manchas);
                         });
                       },
                     ),
-                    Text("Manchas Vermelhas"),
+                    const Text("Manchas Vermelhas"),
                   ],
                 ),
                 Row(
@@ -195,13 +190,13 @@ class HumanEditState extends State<HumanEdit> {
                       value: _humanRegisterController.getDorCabeca(),
                       onChanged: (bool? value) {
                         setState(() {
-                          this.dorCab = value!;
+                          dorCab = value!;
                           _humanRegisterController.setdorCabeca(dorCab);
                         });
                       },
                     ),
-                    Text("Dor de cabeça"),
-                    SizedBox(
+                    const Text("Dor de cabeça"),
+                    const SizedBox(
                       width: 36.5,
                     ),
                     Checkbox(
@@ -210,12 +205,12 @@ class HumanEditState extends State<HumanEdit> {
                       value: _humanRegisterController.getNausea(),
                       onChanged: (bool? value) {
                         setState(() {
-                          this.nausea = value!;
+                          nausea = value!;
                           _humanRegisterController.setNausea(nausea);
                         });
                       },
                     ),
-                    Text("Nausea"),
+                    const Text("Nausea"),
                   ],
                 ),
                 Row(
@@ -226,13 +221,13 @@ class HumanEditState extends State<HumanEdit> {
                       value: _humanRegisterController.getDorOlhos(),
                       onChanged: (bool? value) {
                         setState(() {
-                          this.dorOlhos = value!;
+                          dorOlhos = value!;
                           _humanRegisterController.setDorOlhos(dorOlhos);
                         });
                       },
                     ),
-                    Text("Dor atrás dos olhos"),
-                    SizedBox(
+                    const Text("Dor atrás dos olhos"),
+                    const SizedBox(
                       width: 5,
                     ),
                     Checkbox(
@@ -241,12 +236,12 @@ class HumanEditState extends State<HumanEdit> {
                       value: _humanRegisterController.getDorCorpo(),
                       onChanged: (bool? value) {
                         setState(() {
-                          this.dorCorpo = value!;
+                          dorCorpo = value!;
                           _humanRegisterController.setDorCorpo(dorCorpo);
                         });
                       },
                     ),
-                    Text("Dor no corpo"),
+                    const Text("Dor no corpo"),
                   ],
                 ),
                 Row(
@@ -257,12 +252,12 @@ class HumanEditState extends State<HumanEdit> {
                       value: _humanRegisterController.getCansaco(),
                       onChanged: (bool? value) {
                         setState(() {
-                          this.cansaco = value!;
+                          cansaco = value!;
                           _humanRegisterController.setCansaco(cansaco);
                         });
                       },
                     ),
-                    Text("Cansaço extremo"),
+                    const Text("Cansaço extremo"),
                   ],
                 ),
                 Row(
@@ -321,23 +316,13 @@ class HumanEditState extends State<HumanEdit> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text("Salvar"),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(FeatherIcons.arrowRight),
-                        ],
-                      ),
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           await _humanRegisterController.editHumanCase(
@@ -345,13 +330,23 @@ class HumanEditState extends State<HumanEdit> {
                         }
                       },
                       style: TextButton.styleFrom(
-                          minimumSize: Size(95, 43),
+                          minimumSize: const Size(95, 43),
                           primary: AppColors.white,
                           backgroundColor: AppColors.green,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
-                          textStyle: TextStyle(fontSize: 18)),
+                          textStyle: const TextStyle(fontSize: 18)),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Text("Salvar"),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(FeatherIcons.arrowRight),
+                        ],
+                      ),
                     ),
                   ],
                 )

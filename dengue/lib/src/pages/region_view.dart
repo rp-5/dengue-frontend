@@ -2,7 +2,6 @@ import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/region_register_controller.dart';
 import 'package:dengue/src/model/region.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class RegionView extends StatefulWidget {
   @override
@@ -18,10 +17,10 @@ class RegionViewState extends State<RegionView> {
 
   final formKey = GlobalKey<FormState>();
 
-  List<String> santading_water = <String>['Sim', 'Nao'];
+  List<String> santadingWater = <String>['Sim', 'Nao'];
   String dropdownWater = 'Nao';
 
-  List<String> mosquito_larva = <String>['Sim', 'Nao'];
+  List<String> mosquitoLarva = <String>['Sim', 'Nao'];
   String dropdownMosquito = 'Nao';
 
   bool isSelectedAgua = false;
@@ -32,8 +31,8 @@ class RegionViewState extends State<RegionView> {
     _regionRegisterController.setAddress(widget.region.address);
     _regionRegisterController.setDistrict(widget.region.district);
     _regionRegisterController.setCity(widget.region.city);
-    _regionRegisterController.setSantandingWater(widget.region.santading_water);
-    _regionRegisterController.setMosquitoLarva(widget.region.mosquito_larva);
+    _regionRegisterController.setSantandingWater(widget.region.santadingWater);
+    _regionRegisterController.setMosquitoLarva(widget.region.mosquitoLarva);
     super.initState();
   }
 
@@ -43,18 +42,6 @@ class RegionViewState extends State<RegionView> {
   }
 
   Widget getBody() {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.black;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Visualização da infestação'),
@@ -67,22 +54,22 @@ class RegionViewState extends State<RegionView> {
             key: formKey,
             child: Column(
               children: <Widget>[
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   enabled: false,
-                  decoration: InputDecoration(labelText: 'Endereço*'),
+                  decoration: const InputDecoration(labelText: 'Endereço*'),
                   initialValue: widget.region.address,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   enabled: false,
-                  decoration: InputDecoration(labelText: 'Bairro*'),
+                  decoration: const InputDecoration(labelText: 'Bairro*'),
                   initialValue: widget.region.district,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   enabled: false,
-                  decoration: InputDecoration(labelText: 'Cidade*'),
+                  decoration: const InputDecoration(labelText: 'Cidade*'),
                   initialValue: widget.region.city,
                 ),
                 Row(
@@ -93,7 +80,7 @@ class RegionViewState extends State<RegionView> {
                     ),
                     DropdownButton(
                       value: _regionRegisterController.getSantandingWater(),
-                      items: santading_water.map<DropdownMenuItem<String>>(
+                      items: santadingWater.map<DropdownMenuItem<String>>(
                         (String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -113,7 +100,7 @@ class RegionViewState extends State<RegionView> {
                     ),
                     DropdownButton(
                       value: _regionRegisterController.getMosquitoLarva(),
-                      items: mosquito_larva.map<DropdownMenuItem<String>>(
+                      items: mosquitoLarva.map<DropdownMenuItem<String>>(
                         (String value) {
                           return DropdownMenuItem<String>(
                             value: value,

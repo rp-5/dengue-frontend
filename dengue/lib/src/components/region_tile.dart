@@ -1,5 +1,4 @@
 import 'package:dengue/src/controllers/region_register_controller.dart';
-import 'package:dengue/src/data/pages_list.dart';
 import 'package:dengue/src/model/region.dart';
 import 'package:dengue/src/pages/region_edit.dart';
 import 'package:flutter/material.dart';

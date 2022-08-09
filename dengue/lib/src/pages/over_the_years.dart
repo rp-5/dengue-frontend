@@ -16,28 +16,27 @@ class OverTheYearsState extends State<OverTheYears> {
 
   _generateData() {
     var data1 = [
-      new DengueHuman('Sem suspeita', 64, Color(0xff109618)),
-      new DengueHuman('Suspeitos', 77, Color.fromARGB(255, 50, 145, 223)),
-      new DengueHuman('Confirmados', 23, Color.fromARGB(255, 186, 34, 39)),
-      new DengueHuman('Descartados', 56, Color(0xffff9900)),
+      DengueHuman('Sem suspeita', 64, const Color(0xff109618)),
+      DengueHuman('Suspeitos', 77, const Color.fromARGB(255, 50, 145, 223)),
+      DengueHuman('Confirmados', 23, const Color.fromARGB(255, 186, 34, 39)),
+      DengueHuman('Descartados', 56, const Color(0xffff9900)),
     ];
 
     var linesalesdata = [
-      new NumInfeccoes(15, 22),
-      new NumInfeccoes(16, 23),
-      new NumInfeccoes(17, 45),
-      new NumInfeccoes(18, 56),
-      new NumInfeccoes(19, 55),
-      new NumInfeccoes(20, 60),
-      new NumInfeccoes(21, 61),
-      new NumInfeccoes(22, 70),
+      NumInfeccoes(15, 22),
+      NumInfeccoes(16, 23),
+      NumInfeccoes(17, 45),
+      NumInfeccoes(18, 56),
+      NumInfeccoes(19, 55),
+      NumInfeccoes(20, 60),
+      NumInfeccoes(21, 61),
+      NumInfeccoes(22, 70),
     ];
-
-    
 
     _seriesLineData.add(
       charts.Series(
-        colorFn: (__, _) => charts.ColorUtil.fromDartColor(Color(0xff990099)),
+        colorFn: (__, _) =>
+            charts.ColorUtil.fromDartColor(const Color(0xff990099)),
         id: 'Número de Infecções',
         data: linesalesdata,
         domainFn: (NumInfeccoes numInfeccoes, _) => numInfeccoes.yearval,
@@ -47,7 +46,8 @@ class OverTheYearsState extends State<OverTheYears> {
 
     _seriesLineData.add(
       charts.Series(
-        colorFn: (__, _) => charts.ColorUtil.fromDartColor(Color(0xff990099)),
+        colorFn: (__, _) =>
+            charts.ColorUtil.fromDartColor(const Color(0xff990099)),
         id: 'Número de Infecções',
         data: linesalesdata,
         domainFn: (NumInfeccoes numInfeccoes, _) => numInfeccoes.yearval,
@@ -70,11 +70,8 @@ class OverTheYearsState extends State<OverTheYears> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    // ignore: deprecated_member_use
     _seriesData = <charts.Series<DengueHuman, String>>[];
-    // ignore: deprecated_member_use
     _seriesLineData = <charts.Series<NumInfeccoes, int>>[];
     _generateData();
   }
@@ -87,90 +84,78 @@ class OverTheYearsState extends State<OverTheYears> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.secondary,
-            //backgroundColor: Color(0xff308e1c),
-            bottom: TabBar(
+            bottom: const TabBar(
               indicatorColor: Color(0xff9962D0),
               tabs: [
                 Tab(
                   text: 'Dengue em humanos',
-                  icon: const Icon(FeatherIcons.users),
+                  icon: Icon(FeatherIcons.users),
                 ),
-                Tab(
-                  text: 'Dengue em anos',
-                  icon: const Icon(FeatherIcons.clock)),
-
-                // Tab(
-                //   text:'Dados do mosquito',
-                //   icon: const Icon(FeatherIcons.barChart)),
+                Tab(text: 'Dengue em anos', icon: Icon(FeatherIcons.clock)),
               ],
             ),
-            title: Text('Dados da Dengue'),
+            title: const Text('Dados da Dengue'),
           ),
           body: TabBarView(
             children: [
               Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'Registros de Dengue em Humanos',
-                          style: TextStyle(
-                              fontSize: 24.0, fontWeight: FontWeight.bold),
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      const Text(
+                        'Registros de Dengue em Humanos',
+                        style: TextStyle(
+                            fontSize: 24.0, fontWeight: FontWeight.bold),
+                      ),
+                      Expanded(
+                        child: charts.BarChart(
+                          _seriesData,
+                          animate: true,
+                          barGroupingType: charts.BarGroupingType.grouped,
+                          animationDuration: const Duration(seconds: 5),
                         ),
-                        Expanded(
-                          child: charts.BarChart(
-                            _seriesData,
-                            animate: true,
-                            barGroupingType: charts.BarGroupingType.grouped,
-                            //behaviors: [new charts.SeriesLegend()],
-                            animationDuration: Duration(seconds: 5),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'Casos confirmados ao longo dos anos',
-                          style: TextStyle(
-                              fontSize: 24.0, fontWeight: FontWeight.bold),
-                        ),
-                        Expanded(
-                          child: charts.LineChart(_seriesLineData,
-                              defaultRenderer: new charts.LineRendererConfig(
-                                  includeArea: true, stacked: true),
-                              animate: true,
-                              animationDuration: Duration(seconds: 2),
-                              behaviors: [
-                                new charts.ChartTitle('Ano',
-                                    behaviorPosition:
-                                        charts.BehaviorPosition.bottom,
-                                    titleOutsideJustification: charts
-                                        .OutsideJustification.middleDrawArea),
-                                new charts.ChartTitle('Número de casos',
-                                    behaviorPosition:
-                                        charts.BehaviorPosition.start,
-                                    titleOutsideJustification: charts
-                                        .OutsideJustification.middleDrawArea),
-                                new charts.ChartTitle(
-                                  'Casos confirmados',
-                                  behaviorPosition: charts.BehaviorPosition.end,
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      const Text(
+                        'Casos confirmados ao longo dos anos',
+                        style: TextStyle(
+                            fontSize: 24.0, fontWeight: FontWeight.bold),
+                      ),
+                      Expanded(
+                        child: charts.LineChart(_seriesLineData,
+                            defaultRenderer: charts.LineRendererConfig(
+                                includeArea: true, stacked: true),
+                            animate: true,
+                            animationDuration: const Duration(seconds: 2),
+                            behaviors: [
+                              charts.ChartTitle('Ano',
+                                  behaviorPosition:
+                                      charts.BehaviorPosition.bottom,
                                   titleOutsideJustification: charts
-                                      .OutsideJustification.middleDrawArea,
-                                )
-                              ]),
-                        ),
-                      ],
-                    ),
+                                      .OutsideJustification.middleDrawArea),
+                              charts.ChartTitle('Número de casos',
+                                  behaviorPosition:
+                                      charts.BehaviorPosition.start,
+                                  titleOutsideJustification: charts
+                                      .OutsideJustification.middleDrawArea),
+                              charts.ChartTitle(
+                                'Casos confirmados',
+                                behaviorPosition: charts.BehaviorPosition.end,
+                                titleOutsideJustification:
+                                    charts.OutsideJustification.middleDrawArea,
+                              )
+                            ]),
+                      ),
+                    ],
                   ),
                 ),
               ),

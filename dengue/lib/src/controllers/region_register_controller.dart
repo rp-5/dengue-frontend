@@ -9,22 +9,21 @@ class RegionRegisterController {
   String _address = '';
   String _city = '';
   String _district = '';
-  String _mosquito_larva = '';
-  String _santading_water = '';
+  String _mosquitoLarva = '';
+  String _santadingWater = '';
 
   void setAddress(String address) => _address = address;
   void setCity(String city) => _city = city;
   void setDistrict(String district) => _district = district;
-  void setMosquitoLarva(String mosquito_larva) =>
-      _mosquito_larva = mosquito_larva;
-  void setSantandingWater(String santading_water) =>
-      _santading_water = santading_water;
+  void setMosquitoLarva(String mosquitoLarva) => _mosquitoLarva = mosquitoLarva;
+  void setSantandingWater(String santadingWater) =>
+      _santadingWater = santadingWater;
 
   String getAddress() => _address;
   String getCity() => _city;
   String getDistrict() => _district;
-  String getMosquitoLarva() => _mosquito_larva;
-  String getSantandingWater() => _santading_water;
+  String getMosquitoLarva() => _mosquitoLarva;
+  String getSantandingWater() => _santadingWater;
 
   static const addr = 'http://192.168.1.26:8081';
 
@@ -54,8 +53,8 @@ class RegionRegisterController {
           'address': _address,
           'city': _city,
           'district': _district,
-          'mosquito_larva': _mosquito_larva,
-          'santading_water': _santading_water,
+          'mosquito_larva': _mosquitoLarva,
+          'santading_water': _santadingWater,
         }),
       );
       if (response.statusCode == 200) {
@@ -79,8 +78,8 @@ class RegionRegisterController {
           'address': _address,
           'district': _district,
           'city': _city,
-          'mosquito_larva': _mosquito_larva,
-          'santading_water': _santading_water
+          'mosquito_larva': _mosquitoLarva,
+          'santading_water': _santadingWater
         }),
       );
 

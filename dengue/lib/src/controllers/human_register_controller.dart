@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dengue/src/model/human.dart';
-import 'package:dengue/src/pages/human_cases.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,7 +9,6 @@ class HumanRegisterController {
   String _age = '';
   String _address = '';
   String? _complement = '';
-  // String _symptom = '';
   String _gravity = '';
   String _status = '';
   bool _febre = false;
@@ -25,7 +23,6 @@ class HumanRegisterController {
   void setAge(String age) => _age = age;
   void setAddress(String address) => _address = address;
   void setComplement(String complement) => _complement = complement;
-  // void setSymptom(String symptom) => _symptom = symptom;
   void setGravity(String gravity) => _gravity = gravity;
   void setStatus(String status) => _status = status;
   void setFebre(bool febre) => _febre = febre;
@@ -40,7 +37,6 @@ class HumanRegisterController {
   String getAge() => _age;
   String getAddress() => _address;
   String getComplement() => _complement ?? '';
-  // String getSymptom() => _symptom;
   String getGravity() => _gravity;
   String getStatus() => _status;
   bool getFebre() => _febre;
@@ -78,7 +74,6 @@ class HumanRegisterController {
           'age': int.parse(_age),
           'adress': _address,
           'complement': _complement,
-          // 'symptom': _symptom,
           'gravity': _gravity,
           'status': _status,
           'febre': _febre,
@@ -93,9 +88,6 @@ class HumanRegisterController {
       if (response.statusCode == 200) {
         Navigator.pop(context);
       }
-      // else{
-      //   const AlertDialog("Registro inválido");
-      // }
     } catch (e) {
       const AlertDialog();
     }
@@ -114,7 +106,6 @@ class HumanRegisterController {
           'age': int.parse(_age),
           'adress': _address,
           'complement': _complement,
-          // 'symptom': _symptom,
           'gravity': _gravity,
           'status': _status,
           'febre': _febre,

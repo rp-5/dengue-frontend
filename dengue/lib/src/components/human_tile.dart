@@ -1,5 +1,4 @@
 import 'package:dengue/src/controllers/human_register_controller.dart';
-import 'package:dengue/src/data/pages_list.dart';
 import 'package:dengue/src/model/human.dart';
 import 'package:dengue/src/pages/human_edit.dart';
 import 'package:dengue/src/pages/human_view.dart';
@@ -15,10 +14,6 @@ class HumanTile extends StatelessWidget {
   HumanTile(this.human, {Key? key}) : super(key: key);
 
   late Future<List<Human>> listHuman;
-
-  // void refreshList(){
-
-  // }
 
   @override
   Widget build(BuildContext context) {
