@@ -26,10 +26,11 @@ class RegionRegisterController {
   String getMosquitoLarva() => _mosquito_larva;
   String getSantandingWater() => _santading_water;
 
+  static const addr = 'http://192.168.1.26:8081';
+
   //List region registers
   Future<List<Region>> fetchRegionList() async {
-    final response =
-        await http.get(Uri.parse('http://192.168.1.26:8081/list/region'));
+    final response = await http.get(Uri.parse('$addr/list/region'));
     if (response.statusCode == 200) {
       List regionResponse = jsonDecode(response.body);
 
@@ -43,7 +44,7 @@ class RegionRegisterController {
   Future createRegionCases(context) async {
     try {
       var response = await http.post(
-        Uri.parse('http://192.168.1.26:8081/form/region/save'),
+        Uri.parse('$addr/form/region/save'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           "Accept": "application/json",
@@ -57,28 +58,19 @@ class RegionRegisterController {
           'santading_water': _santading_water,
         }),
       );
-      print(response.body);
       if (response.statusCode == 200) {
         Navigator.pop(context);
       }
     } catch (e) {
-      print(e);
+      const AlertDialog();
     }
   }
 
-  // Navigator.push
-
-  // context,
-  //         MaterialPageRoute(
-  //           builder: (context) => const RegionCases(),
-  //         ),
-
   //Edit de Regions
-
   Future editRegionCase(regionIdToEdit, context) async {
     try {
       var response = await http.put(
-        Uri.parse('http://192.168.1.26:8081/edit/region/$regionIdToEdit'),
+        Uri.parse('$addr/edit/region/$regionIdToEdit'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -92,8 +84,6 @@ class RegionRegisterController {
         }),
       );
 
-      print(response.body);
-
       if (response.statusCode == 200) {
         Navigator.push(
           context,
@@ -102,19 +92,15 @@ class RegionRegisterController {
           ),
         );
       }
-      // else{
-      //   const AlertDialog("Registro inválido");
-      // }
     } catch (e) {
-      print(e);
+      const AlertDialog();
     }
   }
 
 //Delete Region
-
   Future deleteRegionCase(regionIdToDelete, context) async {
-    final response = await http.delete(
-        Uri.parse('http://192.168.1.26:8081/delete/region/$regionIdToDelete'));
+    final response =
+        await http.delete(Uri.parse('$addr/delete/region/$regionIdToDelete'));
 
     if (response.statusCode == 200) {
       Navigator.push(

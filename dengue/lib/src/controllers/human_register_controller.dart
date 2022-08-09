@@ -51,10 +51,11 @@ class HumanRegisterController {
   bool getDorCorpo() => _dorCorpo;
   bool getCansaco() => _cansaco;
 
+  static const addr = 'http://192.168.1.26:8080';
+
   // List humans registers
   Future<List<Human>> fetchHumanList() async {
-    final response =
-        await http.get(Uri.parse('http://192.168.1.26:8080/list/human'));
+    final response = await http.get(Uri.parse('$addr/list/human'));
     if (response.statusCode == 200) {
       List humanResponse = jsonDecode(response.body);
 
@@ -68,7 +69,7 @@ class HumanRegisterController {
   Future createHumanCases(context) async {
     try {
       var response = await http.post(
-        Uri.parse('http://192.168.1.26:8080/form/save'),
+        Uri.parse('$addr/form/save'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -96,14 +97,14 @@ class HumanRegisterController {
       //   const AlertDialog("Registro inválido");
       // }
     } catch (e) {
-      print(e);
+      const AlertDialog();
     }
   }
 
   Future editHumanCase(humanIdToEdit, context) async {
     try {
       var response = await http.put(
-        Uri.parse('http://192.168.1.26:8080/edit/human/$humanIdToEdit'),
+        Uri.parse('$addr/edit/human/$humanIdToEdit'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -126,23 +127,18 @@ class HumanRegisterController {
         }),
       );
 
-      print(response.body);
-
       if (response.statusCode == 200) {
         Navigator.pop(context);
       }
-      // else{
-      //   const AlertDialog("Registro inválido");
-      // }
     } catch (e) {
-      print(e);
+      const AlertDialog();
     }
   }
 
   // Delete human case
   Future deleteHumanCase(humanIdToDelete, context) async {
-    final response = await http.delete(
-        Uri.parse('http://192.168.1.26:8080/delete/human/$humanIdToDelete'));
+    final response =
+        await http.delete(Uri.parse('$addr/delete/human/$humanIdToDelete'));
 
     if (response.statusCode == 200) {
       Navigator.pop(context);

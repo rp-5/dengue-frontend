@@ -17,7 +17,6 @@ class RegionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(region);
     return ListTile(
       title: Text(region.address),
       subtitle: Text(region.city),
