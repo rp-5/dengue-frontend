@@ -5,6 +5,7 @@ import 'package:dengue/src/pages/human_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
+// ignore: must_be_immutable
 class HumanTile extends StatelessWidget {
   final HumanRegisterController _humanRegisterController =
       HumanRegisterController();
