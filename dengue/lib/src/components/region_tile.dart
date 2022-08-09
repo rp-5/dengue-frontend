@@ -22,20 +22,19 @@ class RegionTile extends StatelessWidget {
       title: Text(region.address),
       subtitle: Text(region.city),
       trailing: SizedBox(
-        width: 120,
+        width: 144,
         child: Row(
           children: <Widget>[
-            IconButton( 
+            IconButton(
               icon: const Icon(FeatherIcons.eye),
-              onPressed: (){
+              onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => RegionView(region: region),
-                    )).then((value) {
-                });
+                    )).then((value) {});
               },
-              ),
+            ),
             IconButton(
               icon: const Icon(FeatherIcons.edit),
               onPressed: () {

@@ -52,7 +52,6 @@ class HumanViewState extends State<HumanView> {
     _humanRegisterController.setCansaco(widget.human.cansaco);
     super.initState();
   }
- 
 
   bool febre = false;
   bool manchas = false;
@@ -75,153 +74,204 @@ class HumanViewState extends State<HumanView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child:SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 5),
-              TextFormField(
-                enabled: false,
-                initialValue: widget.human.name,
-                decoration: InputDecoration(labelText: 'Nome completo*'),
-              ),
-              SizedBox(height: 10),
-              TextFormField(   
-                initialValue: widget.human.age.toString(),
-                decoration: InputDecoration(labelText: 'Idade*'),
-                enabled: false,
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                initialValue: widget.human.address,
-                decoration: const InputDecoration(labelText: 'Endereço*'),
-                enabled: false,
-              ),
-              SizedBox(height: 10,),
-              TextFormField(
-                initialValue: widget.human.complement,
-                decoration: const InputDecoration(labelText: 'Complemento'),
-                enabled: false,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text('Sintomas:',
-              style: TextStyle(fontSize: 17),),
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: _humanRegisterController.getFebre(),
-                    onChanged: null,
-                  ),
-                  Text("Febre Alta"),
-                  SizedBox(width: 62,),
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: _humanRegisterController.getManchas(),
-                    onChanged: null,
-                  ),
-                  Text("Manchas Vermelhas"),
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: _humanRegisterController.getDorCabeca(),
-                    onChanged: null,
-                  ),
-                  Text("Dor de cabeça"),
-                  SizedBox(width: 36.5,),
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: _humanRegisterController.getNausea(),
-                    onChanged: null,
-                  ),
-                  Text("Nausea"),
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: _humanRegisterController.getDorOlhos(),
-                    onChanged: null,
-                  ),
-                  Text("Dor atrás dos olhos"),
-                  SizedBox(width: 5,),
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: _humanRegisterController.getDorCorpo(),
-                    onChanged: null,
-                  ),
-                  Text("Dor no corpo"),
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.black,
-                    activeColor: Colors.green,
-                    value: _humanRegisterController.getCansaco(),
-                    onChanged: null,
-                  ),
-                  Text("Cansaço extremo"),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text('Gravidade:',
-                  style: TextStyle(fontSize: 16),),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  DropdownButton(
-                    value: _humanRegisterController.getGravity(),
-                    items: gravidade.map<DropdownMenuItem<String>>(
-                      (String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
+        child: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 5),
+                TextFormField(
+                  enabled: false,
+                  initialValue: widget.human.name,
+                  decoration: InputDecoration(labelText: 'Nome completo*'),
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  initialValue: widget.human.age.toString(),
+                  decoration: InputDecoration(labelText: 'Idade*'),
+                  enabled: false,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  initialValue: widget.human.address,
+                  decoration: const InputDecoration(labelText: 'Endereço*'),
+                  enabled: false,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  initialValue: widget.human.complement,
+                  decoration: const InputDecoration(labelText: 'Complemento'),
+                  enabled: false,
+                ),
+                Row(
+                  children: const [
+                    Text(
+                      'Sintomas:',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: febre,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          febre = value!;
+                          _humanRegisterController.setFebre(febre);
+                        });
                       },
-                    ).toList(),
-                    onChanged: null,
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text('Status:',
-                  style: TextStyle(fontSize: 16)),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  DropdownButton(
-                    value: _humanRegisterController.getStatus(),
-                    items: status.map<DropdownMenuItem<String>>(
-                      (String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
+                    ),
+                    const Text("Febre Alta"),
+                    const SizedBox(
+                      width: 26,
+                    ),
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: manchas,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          manchas = value!;
+                          _humanRegisterController.setManchas(manchas);
+                        });
                       },
-                    ).toList(),
-                    onChanged: null,
-                  ),
-                ],
-              ),
-            ],
+                    ),
+                    const Text("Manchas Vermelhas"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: dorCab,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          dorCab = value!;
+                          _humanRegisterController.setdorCabeca(dorCab);
+                        });
+                      },
+                    ),
+                    const Text("Dor de cabeça"),
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: nausea,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          nausea = value!;
+                          _humanRegisterController.setNausea(nausea);
+                        });
+                      },
+                    ),
+                    const Text("Náusea"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: dorOlhos,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          dorOlhos = value!;
+                          _humanRegisterController.setDorOlhos(dorOlhos);
+                        });
+                      },
+                    ),
+                    const Text("Dor atrás dos\n olhos"),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: dorCorpo,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          dorCorpo = value!;
+                          _humanRegisterController.setDorCorpo(dorCorpo);
+                        });
+                      },
+                    ),
+                    const Text("Dor no corpo"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.black,
+                      activeColor: Colors.green,
+                      value: cansaco,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          cansaco = value!;
+                          _humanRegisterController.setCansaco(cansaco);
+                        });
+                      },
+                    ),
+                    const Text("Cansaço extremo"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      'Gravidade:',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    DropdownButton(
+                      value: _humanRegisterController.getGravity(),
+                      items: gravidade.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: null,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text('Status:', style: TextStyle(fontSize: 16)),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    DropdownButton(
+                      value: _humanRegisterController.getStatus(),
+                      items: status.map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: null,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
         ),
       ),
     );

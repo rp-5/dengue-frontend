@@ -73,19 +73,3 @@ class RegionCasesState extends State<RegionCases> {
         ));
   }
 }
-//   Widget getBody(){
-//     return Scaffold(
-//       extendBodyBehindAppBar: true,
-//       appBar: AppBar(
-//       backgroundColor: AppColors.secondary,
-//         elevation: 0,
-//         title: const Text(
-//           "Casos por Região",
-//           style: TextStyle(
-//             color: Colors.white,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

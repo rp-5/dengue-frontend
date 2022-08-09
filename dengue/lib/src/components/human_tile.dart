@@ -22,17 +22,16 @@ class HumanTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return ListTile(
       title: Text(human.name),
       subtitle: Text(human.status),
       trailing: SizedBox(
-        width: 120,
+        width: 144,
         child: Row(
           children: <Widget>[
-            IconButton( 
+            IconButton(
               icon: const Icon(FeatherIcons.eye),
-              onPressed: (){
+              onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -41,7 +40,7 @@ class HumanTile extends StatelessWidget {
                   listHuman = _humanRegisterController.fetchHumanList();
                 });
               },
-              ),
+            ),
             IconButton(
               icon: const Icon(FeatherIcons.edit),
               onPressed: () {
