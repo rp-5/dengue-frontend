@@ -7,6 +7,7 @@ class Region {
   final String city;
   final String mosquitoLarva;
   final String santadingWater;
+  final String date;
 
   const Region({
     required this.id,
@@ -15,6 +16,7 @@ class Region {
     required this.city,
     required this.mosquitoLarva,
     required this.santadingWater,
+    required this.date
   });
 
   factory Region.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class Region {
       city: json['city'],
       mosquitoLarva: json['mosquito_larva'],
       santadingWater: json['santading_water'],
+      date: json['date']
     );
   }
 
@@ -39,6 +42,7 @@ class Region {
       "city": city,
       "mosquito_larva": mosquitoLarva,
       "santading_water": santadingWater,
+      "date": date
     };
   }
 

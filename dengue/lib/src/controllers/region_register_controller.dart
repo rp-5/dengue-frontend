@@ -11,6 +11,7 @@ class RegionRegisterController {
   String _district = '';
   String _mosquitoLarva = '';
   String _santadingWater = '';
+  DateTime _date = DateTime.now();
 
   void setAddress(String address) => _address = address;
   void setCity(String city) => _city = city;
@@ -18,14 +19,16 @@ class RegionRegisterController {
   void setMosquitoLarva(String mosquitoLarva) => _mosquitoLarva = mosquitoLarva;
   void setSantandingWater(String santadingWater) =>
       _santadingWater = santadingWater;
+  void setDate(DateTime date) => _date = date;
 
   String getAddress() => _address;
   String getCity() => _city;
   String getDistrict() => _district;
   String getMosquitoLarva() => _mosquitoLarva;
   String getSantandingWater() => _santadingWater;
+  DateTime getDate() => _date;
 
-  static const addr = 'http://192.168.1.26:8081';
+  static const addr = 'http://192.168.1.10:8081';
 
   //List region registers
   Future<List<Region>> fetchRegionList() async {
@@ -41,6 +44,7 @@ class RegionRegisterController {
 
   // Create Region Register
   Future createRegionCases(context) async {
+    print(_date);
     try {
       var response = await http.post(
         Uri.parse('$addr/form/region/save'),
@@ -55,6 +59,7 @@ class RegionRegisterController {
           'district': _district,
           'mosquito_larva': _mosquitoLarva,
           'santading_water': _santadingWater,
+          'date': _date.toIso8601String()
         }),
       );
       if (response.statusCode == 200) {
@@ -79,7 +84,8 @@ class RegionRegisterController {
           'district': _district,
           'city': _city,
           'mosquito_larva': _mosquitoLarva,
-          'santading_water': _santadingWater
+          'santading_water': _santadingWater,
+          'date': _date
         }),
       );
 

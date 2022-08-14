@@ -58,7 +58,8 @@ class RegionRegisterState extends State<RegionRegister> {
                             setState(() => {
                                   this.selectedDate = selectedDate,
                                   dateControl.text =
-                                      '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}'
+                                      '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}',
+                                      _regionRegisterController.setDate(selectedDate)
                                 });
                           })),
                   // Close the modal
