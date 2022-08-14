@@ -16,6 +16,7 @@ class Human {
   final bool dorOlhos;
   final bool dorCorpo;
   final bool cansaco;
+  final String date;
 
   const Human(
       {required this.id,
@@ -32,7 +33,8 @@ class Human {
       required this.nausea,
       required this.dorOlhos,
       required this.dorCorpo,
-      required this.cansaco});
+      required this.cansaco,
+      required this.date});
 
   factory Human.fromJson(Map<String, dynamic> json) {
     return Human(
@@ -50,7 +52,8 @@ class Human {
         nausea: json['nausea'],
         dorOlhos: json['dorOlhos'],
         dorCorpo: json['dorCorpo'],
-        cansaco: json['cansaco']);
+        cansaco: json['cansaco'],
+        date: json['date']);
   }
 
   static List<Human> fromArray(List<dynamic> list) =>
@@ -72,7 +75,8 @@ class Human {
       "nausea": nausea,
       "dorOlhos": dorOlhos,
       "dorCorpo": dorCorpo,
-      "cansaco": cansaco
+      "cansaco": cansaco,
+      "date": date,
     };
   }
 

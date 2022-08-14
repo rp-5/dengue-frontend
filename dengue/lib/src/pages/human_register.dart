@@ -73,8 +73,10 @@ class HumanRegisterState extends State<HumanRegister> {
                             setState(() => {
                                   this.selectedDate = selectedDate,
                                   dateControl.text =
-                                      '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}'
+                                      '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}',
+                                      _humanRegisterController.setDate(selectedDate)
                                 });
+                            
                           })),
                   // Close the modal
                   CupertinoButton(

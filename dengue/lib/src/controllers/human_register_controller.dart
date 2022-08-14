@@ -18,6 +18,7 @@ class HumanRegisterController {
   bool _dorOlhos = false;
   bool _dorCorpo = false;
   bool _cansaco = false;
+  DateTime _date = DateTime.now();
 
   void setName(String name) => _name = name;
   void setAge(String age) => _age = age;
@@ -32,6 +33,7 @@ class HumanRegisterController {
   void setDorOlhos(bool dorOlhos) => _dorOlhos = dorOlhos;
   void setDorCorpo(bool dorCorpo) => _dorCorpo = dorCorpo;
   void setCansaco(bool cansaco) => _cansaco = cansaco;
+  void setDate(DateTime date) => _date = date;
 
   String getName() => _name;
   String getAge() => _age;
@@ -46,8 +48,9 @@ class HumanRegisterController {
   bool getDorOlhos() => _dorOlhos;
   bool getDorCorpo() => _dorCorpo;
   bool getCansaco() => _cansaco;
+  DateTime getDate() => _date;
 
-  static const addr = 'http://192.168.1.26:8080';
+  static const addr = 'http://192.168.1.10:8080';
 
   // List humans registers
   Future<List<Human>> fetchHumanList() async {
@@ -63,6 +66,7 @@ class HumanRegisterController {
 
   // Create human Registers
   Future createHumanCases(context) async {
+    print(_date);
     try {
       var response = await http.post(
         Uri.parse('$addr/form/save'),
@@ -82,13 +86,15 @@ class HumanRegisterController {
           'nausea': _nausea,
           'dorOlhos': _dorOlhos,
           'dorCorpo': _dorCorpo,
-          'cansaco': _cansaco
+          'cansaco': _cansaco,
+          'date': _date.toIso8601String()
         }),
       );
       if (response.statusCode == 200) {
         Navigator.pop(context);
       }
     } catch (e) {
+      print(e);
       const AlertDialog();
     }
   }
@@ -114,7 +120,8 @@ class HumanRegisterController {
           'nausea': _nausea,
           'dorOlhos': _dorOlhos,
           'dorCorpo': _dorCorpo,
-          'cansaco': _cansaco
+          'cansaco': _cansaco,
+          'date': _date
         }),
       );
 
