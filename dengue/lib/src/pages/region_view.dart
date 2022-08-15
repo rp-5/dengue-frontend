@@ -1,7 +1,9 @@
 import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/region_register_controller.dart';
 import 'package:dengue/src/model/region.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 class RegionView extends StatefulWidget {
   @override
@@ -33,7 +35,17 @@ class RegionViewState extends State<RegionView> {
     _regionRegisterController.setCity(widget.region.city);
     _regionRegisterController.setSantandingWater(widget.region.santadingWater);
     _regionRegisterController.setMosquitoLarva(widget.region.mosquitoLarva);
+    _regionRegisterController.setDate(DateTime.parse(widget.region.date));
     super.initState();
+  }
+
+   DateTime selectedDate = DateTime.now();
+
+  TextEditingController dateControl =
+      TextEditingController(text: "Data");
+
+  Future<void> _pickDate(BuildContext context) async {
+    
   }
 
   @override
@@ -111,6 +123,27 @@ class RegionViewState extends State<RegionView> {
                       onChanged: null,
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: TextField(
+                        controller: dateControl,
+                        readOnly: true,
+                        onTap: () => _pickDate(context),
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Data ( dd/mm/aaaa )"),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
                 ),
                 // Row(
                 //   children: [

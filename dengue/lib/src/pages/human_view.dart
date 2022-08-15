@@ -57,6 +57,15 @@ class HumanViewState extends State<HumanView> {
   bool dorCorpo = false;
   bool cansaco = false;
 
+  DateTime selectedDate = DateTime.now();
+
+  TextEditingController dateControl =
+      TextEditingController(text: "Data");
+
+  Future<void> _pickDate(BuildContext context) async {
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: getBody());
@@ -231,6 +240,26 @@ class HumanViewState extends State<HumanView> {
                       onChanged: null,
                     ),
                   ],
+                ),const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: TextField(
+                        controller: dateControl,
+                        readOnly: true,
+                        onTap: () => _pickDate(context),
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Data ( dd/mm/aaaa )"),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
                 ),
               ],
             ),
