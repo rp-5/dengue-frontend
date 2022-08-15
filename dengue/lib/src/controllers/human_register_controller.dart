@@ -121,7 +121,7 @@ class HumanRegisterController {
           'dorOlhos': _dorOlhos,
           'dorCorpo': _dorCorpo,
           'cansaco': _cansaco,
-          'date': _date
+          'date': _date.toIso8601String()
         }),
       );
 

@@ -1,6 +1,7 @@
 import 'package:dengue/core/theme/app_colors.dart';
 import 'package:dengue/src/controllers/human_register_controller.dart';
 import 'package:dengue/src/model/human.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -54,6 +55,57 @@ class HumanEditState extends State<HumanEdit> {
   bool dorOlhos = false;
   bool dorCorpo = false;
   bool cansaco = false;
+
+  DateTime selectedDate = DateTime.now();
+
+  TextEditingController dateControl =
+      TextEditingController(text: 'Pressione para escolher a data!');
+
+  Future<void> _pickDate(BuildContext context) async {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (_) => Container(
+              height: 320,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50)),
+                  color: AppColors.white),
+              child: Column(
+                children: [
+                  SizedBox(
+                      height: 250,
+                      child: CupertinoDatePicker(
+                          dateOrder: DatePickerDateOrder.dmy,
+                          minimumYear: 2015,
+                          maximumYear: DateTime.now().year,
+                          initialDateTime: _humanRegisterController.getDate(),
+                          mode: CupertinoDatePickerMode.date,
+                          onDateTimeChanged: (selectedDate) {
+                            setState(() => {
+                                  this.selectedDate = selectedDate,
+                                  dateControl.text =
+                                      '${selectedDate.day} - ${selectedDate.month} - ${selectedDate.year}',
+                                    _humanRegisterController.setDate(selectedDate)
+                                });
+                            
+                          })),
+                  // Close the modal
+                  CupertinoButton(
+                    child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Icon(
+                        FeatherIcons.arrowRight,
+                        size: 30,
+                        color: AppColors.green,
+                      ),
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
+              ),
+            ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -314,6 +366,24 @@ class HumanEditState extends State<HumanEdit> {
                         });
                       },
                     ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: TextField(
+                        controller: dateControl,
+                        readOnly: true,
+                        onTap: () => _pickDate(context),
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Data ( dd/mm/aaaa )"),
+                      ),
+                    )
                   ],
                 ),
                 const SizedBox(
