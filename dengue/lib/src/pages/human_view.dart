@@ -122,13 +122,9 @@ class HumanViewState extends State<HumanView> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
+                      
                       value: febre,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          febre = value!;
-                          _humanRegisterController.setFebre(febre);
-                        });
-                      },
+                      onChanged: null,
                     ),
                     const Text("Febre Alta"),
                     const SizedBox(
@@ -138,12 +134,7 @@ class HumanViewState extends State<HumanView> {
                       checkColor: Colors.black,
                       activeColor: Colors.green,
                       value: manchas,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          manchas = value!;
-                          _humanRegisterController.setManchas(manchas);
-                        });
-                      },
+                      onChanged: null,
                     ),
                     const Text("Manchas Vermelhas"),
                   ],
@@ -154,24 +145,14 @@ class HumanViewState extends State<HumanView> {
                       checkColor: Colors.black,
                       activeColor: Colors.green,
                       value: dorCab,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          dorCab = value!;
-                          _humanRegisterController.setdorCabeca(dorCab);
-                        });
-                      },
+                      onChanged: null
                     ),
                     const Text("Dor de cabeça"),
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
                       value: nausea,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          nausea = value!;
-                          _humanRegisterController.setNausea(nausea);
-                        });
-                      },
+                      onChanged: null
                     ),
                     const Text("Náusea"),
                   ],
@@ -182,12 +163,7 @@ class HumanViewState extends State<HumanView> {
                       checkColor: Colors.black,
                       activeColor: Colors.green,
                       value: dorOlhos,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          dorOlhos = value!;
-                          _humanRegisterController.setDorOlhos(dorOlhos);
-                        });
-                      },
+                      onChanged: null
                     ),
                     const Text("Dor atrás dos\n olhos"),
                     const SizedBox(
@@ -197,12 +173,7 @@ class HumanViewState extends State<HumanView> {
                       checkColor: Colors.black,
                       activeColor: Colors.green,
                       value: dorCorpo,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          dorCorpo = value!;
-                          _humanRegisterController.setDorCorpo(dorCorpo);
-                        });
-                      },
+                      onChanged: null
                     ),
                     const Text("Dor no corpo"),
                   ],
@@ -213,12 +184,7 @@ class HumanViewState extends State<HumanView> {
                       checkColor: Colors.black,
                       activeColor: Colors.green,
                       value: cansaco,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          cansaco = value!;
-                          _humanRegisterController.setCansaco(cansaco);
-                        });
-                      },
+                      onChanged: null
                     ),
                     const Text("Cansaço extremo"),
                   ],
