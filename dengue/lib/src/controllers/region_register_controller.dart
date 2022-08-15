@@ -85,7 +85,7 @@ class RegionRegisterController {
           'city': _city,
           'mosquito_larva': _mosquitoLarva,
           'santading_water': _santadingWater,
-          'date': _date
+          'date': _date.toIso8601String()
         }),
       );
 
