@@ -28,7 +28,8 @@ class RegionRegisterController {
   String getSantandingWater() => _santadingWater;
   DateTime getDate() => _date;
 
-  static const addr = 'http://192.168.1.10:8081';
+//Seu ip aqui
+  static const addr = 'http://:8081';
 
   //List region registers
   Future<List<Region>> fetchRegionList() async {

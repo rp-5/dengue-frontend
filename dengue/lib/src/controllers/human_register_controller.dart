@@ -49,8 +49,8 @@ class HumanRegisterController {
   bool getDorCorpo() => _dorCorpo;
   bool getCansaco() => _cansaco;
   DateTime getDate() => _date;
-
-  static const addr = 'http://192.168.1.10:8080';
+//Seu ip aqui
+  static const addr = 'http://:8080';
 
   // List humans registers
   Future<List<Human>> fetchHumanList() async {

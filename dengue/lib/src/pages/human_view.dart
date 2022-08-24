@@ -132,7 +132,7 @@ class HumanViewState extends State<HumanView> {
                       checkColor: Colors.black,
                       activeColor: Colors.green,
                       
-                      value: febre,
+                      value: _humanRegisterController.getFebre(),
                       onChanged: null,
                     ),
                     const Text("Febre Alta"),
@@ -142,7 +142,7 @@ class HumanViewState extends State<HumanView> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: manchas,
+                      value: _humanRegisterController.getManchas(),
                       onChanged: null,
                     ),
                     const Text("Manchas Vermelhas"),
@@ -153,14 +153,14 @@ class HumanViewState extends State<HumanView> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: dorCab,
+                      value: _humanRegisterController.getDorCabeca(),
                       onChanged: null
                     ),
                     const Text("Dor de cabeça"),
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: nausea,
+                      value: _humanRegisterController.getNausea(),
                       onChanged: null
                     ),
                     const Text("Náusea"),
@@ -171,7 +171,7 @@ class HumanViewState extends State<HumanView> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: dorOlhos,
+                      value: _humanRegisterController.getDorOlhos(),
                       onChanged: null
                     ),
                     const Text("Dor atrás dos\n olhos"),
@@ -181,7 +181,7 @@ class HumanViewState extends State<HumanView> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: dorCorpo,
+                      value: _humanRegisterController.getDorCorpo(),
                       onChanged: null
                     ),
                     const Text("Dor no corpo"),
@@ -192,7 +192,7 @@ class HumanViewState extends State<HumanView> {
                     Checkbox(
                       checkColor: Colors.black,
                       activeColor: Colors.green,
-                      value: cansaco,
+                      value: _humanRegisterController.getCansaco(),
                       onChanged: null
                     ),
                     const Text("Cansaço extremo"),
